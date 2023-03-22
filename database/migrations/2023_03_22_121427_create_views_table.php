@@ -21,6 +21,7 @@ class CreateViewsTable extends Migration
             $table->foreign('apartment_id')->references('id')->on('apartments');
             $table->integer('IP_address');
             $table->date('date');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

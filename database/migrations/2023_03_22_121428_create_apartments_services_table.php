@@ -21,6 +21,7 @@ class CreateApartmentsServicesTable extends Migration
             $table->foreign('apartment_id')->references('id')->on('apartments');
             $table->unsignedBigInteger('service_id');
             $table->foreign('service_id')->references('id')->on('services');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

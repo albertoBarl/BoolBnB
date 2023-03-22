@@ -31,6 +31,7 @@ class CreateApartmentsTable extends Migration
             $table->decimal('longitude', 9, 6);
             $table->float('price');
             $table->boolean('free_cancellation')->default(true);
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
