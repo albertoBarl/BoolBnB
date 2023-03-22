@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+// imported
+use Illuminate\Support\Str;
+
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -21,6 +25,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'surname',
+        'username',
+        'slug',
+        'date_of_birth',
     ];
 
     /**
@@ -41,4 +49,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // slug function
+    public static function genSlug($param)
+    {
+        return Str::slug($param, "-");
+    }
 }
