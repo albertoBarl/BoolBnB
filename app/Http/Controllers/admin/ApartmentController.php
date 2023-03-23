@@ -40,7 +40,23 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        //
+        $form_data = $request->all();
+
+        $slug = Apartment::genSlug($request->title);
+
+        $form_data['slug'] = $slug;
+
+
+        if($request->has('image')){
+            $path = Storage::disk('public')->put('post_images', $request->image);
+
+            $form_data['image'] = $path;
+        }
+
+        $form_data['user_id'] = auth()->user()->id;
+        Apartment::create($form_data);
+
+        return redirect()->route('admin.apartments.index');
     }
 
     /**
