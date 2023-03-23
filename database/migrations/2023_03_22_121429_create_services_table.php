@@ -13,6 +13,7 @@ class CreateServicesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
 
         Schema::create('services', function (Blueprint $table) {
             $table->id();
@@ -31,7 +32,6 @@ class CreateServicesTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('services');
     }
 }

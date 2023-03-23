@@ -34,8 +34,7 @@ class StoreApartmentRequest extends FormRequest
             'latitude' => ['required'],
             'longitude' => ['required'],
             'price' => ['required'],
-            // 'free_cancellations' => ['required'],
-            'free_cancellations' => ['nullable'],
+            'free_cancellations' => ['required'],
             
             // 'service_id' => ['nullable', 'exists:services,id'],
             // 'service_id' => ['nullable'],
@@ -54,9 +53,10 @@ class StoreApartmentRequest extends FormRequest
             'latitude.required' => 'La latitudine è richiesta',
             'longitude.required' => 'La longitudine è richiesta',
             'price.required' => 'Il prezzo è richiesto',
-            // 'free_cancellations.required' => 'la opzione di cancellazione della prenotazione è richiesta',
+            'free_cancellations.required' => 'la opzione di cancellazione della prenotazione è richiesta',
             'image.image' => 'Inserire un formato di immagine valido',
             'title.unique' => 'esiste già un appartamento con questo titolo',
+            'image.image' => 'Inserire un formato di immagine valido'
         ];
     }
 }

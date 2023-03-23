@@ -17,9 +17,4 @@ class Sponsor extends Model
     {
         return Str::slug($param, '-');
     }
-
-    public function projects()
-    {
-        return $this->belongsToMany(Sponsor::class);
-    }
 }

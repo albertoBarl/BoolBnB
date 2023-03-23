@@ -30,7 +30,7 @@ class ApartmentSeeder extends Seeder
             $newApartment->image = $apartment['image'];
             $newApartment->latitude = $apartment['latitude'];
             $newApartment->longitude = $apartment['longitude'];
-            $newApartment->slug = Apartment::genSlug($newApartment->title, "-");
+            $newApartment->slug = $apartment['slug'];
             $newApartment->price = $apartment['price'];
             $newApartment->free_cancellation = $apartment['free_cancellation'];
 
