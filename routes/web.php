@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
 // controllers
-use App\Http\Controllers\Admin\ApartmentController;
+use App\Http\Controllers\Admin\ApartmentController as ApartmentController;
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 
 /*
