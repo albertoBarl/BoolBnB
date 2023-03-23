@@ -72,6 +72,14 @@
                                         class="fa-solid fas fa-envelope fa-lg fa-fw"></i> Messages
                                 </a>
                             </li>
+                            
+                            {{-- appartamenti --}}
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.apartments.index') }}"> <i class="fa-solid fa-building"></i>
+                                    Appartamenti
+                                </a>
+                            </li>
 
 
                             {{-- sponsors --}}

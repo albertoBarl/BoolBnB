@@ -34,7 +34,7 @@ class StoreApartmentRequest extends FormRequest
             'latitude' => ['required'],
             'longitude' => ['required'],
             'price' => ['required'],
-            'free_cancellations' => ['required'],
+            'free_cancellations' => ['nullable'],
             
             // 'service_id' => ['nullable', 'exists:services,id'],
             // 'service_id' => ['nullable'],
