@@ -25,6 +25,7 @@ Route::get('/', function () {
 // route for dashboard
 Route::middleware(["auth", "verified"])->name("admin.")->prefix("admin")->group(function () {
     Route::get("/", [DashboardController::class, "index"])->name("dashboard");
+    Route::resource("messages", [DashboardController::class, "index"])->name("index");
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
 });
 
