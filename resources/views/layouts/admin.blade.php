@@ -52,39 +52,19 @@
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
-
                             <li class="nav-item">
-
                                 {{ Route::currentRouteName() }}
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
-
-                            </li>
-
-                            {{-- <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.projects.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.projects.index') }}"> <i
-                                        class="fa-solid fa-newspaper fa-lg fa-fw"></i> Projects
-                                </a>
-                            </li> --}}
-                            {{-- <li>
-                                {{ Route::currentRouteName() }}
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.messages.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.messages.index') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
-                                </a>
-                            </li> --}}
-
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.apartments.index') }}"> <i class="fa-solid fa-building"></i>
-                                    Apartments
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.services.index' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.services.index') }}"> <i
+                                        class="fa-solid fa-newspaper fa-lg fa-fw"></i> Services
                                 </a>
                             </li>
-
 
                         </ul>
 
