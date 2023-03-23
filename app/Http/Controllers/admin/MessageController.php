@@ -16,7 +16,7 @@ class MessageController extends Controller
         return view('admin.messages.index', compact('messages'));
     }
 
-
+//g
     public function create()
     {
         return view('admin.messages.create');
