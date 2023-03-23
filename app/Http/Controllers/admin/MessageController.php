@@ -39,4 +39,9 @@ class MessageController extends Controller
 
         return redirect()->route('admin.messages.index')->with('message','Progetto creato correttamente');
     }
+
+    public function show(Message $message)
+    {
+        return view('admin.messages.show', compact('message'));
+    }
 }

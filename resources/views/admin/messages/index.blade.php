@@ -19,21 +19,12 @@
                                 <div><strong>Surname:</strong>{{$msg->surname}}</div>
                                 <div><strong>Email:</strong>{{$msg->email}}</div>
                                 <div><strong>Contenuto:</strong>{{$msg->content}}</div>
-                                <div><strong>Titolo:</strong>{{$msg->slug}}</div>
+                                <div><strong>Slug:</strong>{{$msg->slug}}</div>
                                 <div class="d-flex">
                                 <div class="m-1">
-                                    <a href="{{ route('admin.posts.show', $msg->slug)}}" title="Visualizza Progetto" class="btn btn-primary btn-sm btn-square">
+                                    <a href="{{ route('admin.messages.show', $msg->slug)}}" title="Visualizza Progetto" class="btn btn-primary btn-sm btn-square">
                                             <i class="fas fa-eye"></i>
                                     </a>
-                                </div>
-                                <div class="m-1">
-                                    {{-- <form action="{{ route('admin.message.destroy', $msg->slug) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm btn-square">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form> --}}
                                 </div>
                                 </div>
                             </div>
