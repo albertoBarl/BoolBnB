@@ -65,6 +65,13 @@
                                         class="fa-solid fa-newspaper fa-lg fa-fw"></i> Services
                                 </a>
                             </li>
+                            {{-- Messages --}}
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.messages.index' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.messages.index') }}"> <i
+                                        class="fa-solid fa-newspaper fa-lg fa-fw"></i> Messages
+                                </a>
+                            </li>
 
 
                             {{-- sponsors --}}
