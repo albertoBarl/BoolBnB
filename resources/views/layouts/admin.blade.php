@@ -69,18 +69,19 @@
                                         class="fa-solid fa-newspaper fa-lg fa-fw"></i> Projects
                                 </a>
                             </li> --}}
-                            <li>
+                            {{-- <li>
                                 {{ Route::currentRouteName() }}
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.messages.index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.messages.index') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
-                            </li>
+                            </li> --}}
 
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.apartments.index') }}"> <i class="fa-solid fa-building"></i> Apartments
+                                    href="{{ route('admin.apartments.index') }}"> <i class="fa-solid fa-building"></i>
+                                    Apartments
                                 </a>
                             </li>
 
