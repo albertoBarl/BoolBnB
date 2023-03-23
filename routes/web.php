@@ -5,8 +5,10 @@ use App\Http\Controllers\ProfileController;
 
 // controllers
 use App\Http\Controllers\Admin\ApartmentController;
-use App\Http\Controllers\Admin\DashboardController as DashboardController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SponsorController;
 use App\Http\Controllers\Admin\ServiceController;
+
 
 
 
@@ -30,6 +32,7 @@ Route::middleware(["auth", "verified"])->name("admin.")->prefix("admin")->group(
     Route::get("/", [DashboardController::class, "index"])->name("dashboard");
     // Route::resource("messages", [MessageController::class, "index"])->parameters(['messages' => 'message:slug']);
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
+    Route::resource('sponsors', SponsorController::class);
     Route::resource('services', ServiceController::class)->parameters(['services' => 'services:slug']);
 });
 

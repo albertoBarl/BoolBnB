@@ -13,9 +13,8 @@ class Sponsor extends Model
 
     protected $guarded = [];
 
-    // slug function
     public static function genSlug($param)
     {
-        return Str::slug($param, "-");
+        return Str::slug($param, '-');
     }
 }
