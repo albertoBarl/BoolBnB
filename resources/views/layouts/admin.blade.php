@@ -69,7 +69,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.messages.index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.messages.index') }}"> <i
-                                        class="fa-solid fa-newspaper fa-lg fa-fw"></i> Messages
+                                        class="fa-solid fas fa-envelope fa-lg fa-fw"></i> Messages
                                 </a>
                             </li>
 

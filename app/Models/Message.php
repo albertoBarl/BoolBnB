@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Http\Requests\StoreMessageRequest;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
