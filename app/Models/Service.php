@@ -4,17 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use app\Models\Apartment;
 
-
-class Sponsor extends Model
+class Service extends Model
 {
     use HasFactory;
-
     protected $guarded = [];
 
-    public static function genSlug($param)
+    public function apartments()
     {
-        return Str::slug($param, '-');
+        return $this->belongsToMany(Apartment::class);
     }
 }
