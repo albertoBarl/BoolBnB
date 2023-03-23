@@ -35,13 +35,14 @@ class StoreApartmentRequest extends FormRequest
             'longitude' => ['required'],
             'price' => ['required'],
             'free_cancellations' => ['nullable'],
-            
-            // 'service_id' => ['nullable', 'exists:services,id'],
+
+            'services' => ['exists:services,id'],
             // 'service_id' => ['nullable'],
 
         ];
     }
-    public function messages(){
+    public function messages()
+    {
         return [
             'title.required' => 'Il titolo è richiesto',
             'description.required' => 'la descrizione è richiesta',

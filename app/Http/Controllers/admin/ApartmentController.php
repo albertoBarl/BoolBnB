@@ -8,6 +8,7 @@ use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Apartment;
+use App\Models\Service;
 
 class ApartmentController extends Controller
 {
@@ -29,7 +30,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('admin.apartments.create');
+        $services = Service::all();
+        return view('admin.apartments.create', compact('services'));
     }
 
     /**
@@ -47,14 +49,18 @@ class ApartmentController extends Controller
         $form_data['slug'] = $slug;
 
 
-        if($request->has('image')){
+        if ($request->has('image')) {
             $path = Storage::disk('public')->put('post_images', $request->image);
 
             $form_data['image'] = $path;
         }
 
         $form_data['user_id'] = auth()->user()->id;
-        Apartment::create($form_data);
+        $newApartment = Apartment::create($form_data);
+
+        if ($request->has('services')) {
+            $newApartment->services()->attach($request->services);
+        }
 
         return redirect()->route('admin.apartments.index');
     }
