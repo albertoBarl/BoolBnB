@@ -73,15 +73,15 @@
                         <option value="0">no</option>
                     </select>
                 </div>
-                {{-- <div class="form-group my-3">
-                    <label class="control-label">Tecnologie</label>
-                    @foreach ($technologies as $technology)
+                <div class="form-group my-3">
+                    <label class="control-label">services</label>
+                    @foreach ($services as $service)
                         <div>
-                            <input type="checkbox" value="{{ $technology->id }}" name="technologies[]">
-                            <label class="form-check-label">{{ $technology->name }}</label>
+                            <input type="checkbox" value="{{ $service->id }}" name="services[]">
+                            <label class="form-check-label">{{ $service->name }}</label>
                         </div>
                     @endforeach
-                </div> --}}
+                </div>
                 <div class="form-group my-3">
                     <button type="submit" class="btn btn-sm btn-success">Salva progetto</button>
                 </div>
