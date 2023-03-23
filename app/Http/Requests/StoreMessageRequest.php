@@ -27,7 +27,8 @@ class StoreMessageRequest extends FormRequest
                 'name' => ['required', 'unique:messages'],
                 'surname' => ['required'],
                 'email' => ['required'],
-                'content' => ['required']
+                'content' => ['required'],
+                'apartment_id' => ['required']
         ];
     }
 }

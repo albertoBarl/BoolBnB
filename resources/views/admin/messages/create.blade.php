@@ -32,6 +32,12 @@
                     </label>
                     <input type="text" class="form-control" placeholder="Contenuto" id="content" name="content">
                 </div>
+                <div class="form-group mt-3">
+                    <label class="control-label">
+                         Apartment ID
+                    </label>
+                    <input type="text" class="form-control" placeholder="ID" id="apartment_id" name="apartment_id">
+                </div>
                 <div class="form-group my-3">
                     <button type="submit" class="btn btn-success">Salva il Messaggio</button>
                 </div>
