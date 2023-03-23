@@ -24,7 +24,7 @@ class StoreServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['string', 'max:50'],
         ];
     }
 }
