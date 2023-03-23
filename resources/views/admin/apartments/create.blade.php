@@ -26,11 +26,15 @@
                         @endforeach
                     @endif
                 </div>
+                <div class="form-element">
+                    <label class="control-label">Descrizione</label>
+                    <textarea rows="10" type="text" name="description" placeholder="Inserisci la descrizione"></textarea>
+                </div>
                 <div class="form-group my-3">
                     <label class="control-label">Copertina</label>
-                    <input type="file" name="cover_image" id="cover_image" class="form-control
-                    @error('cover_image')is-invalid @enderror">
-                    @error('cover_image')
+                    <input type="file" name="image" id="image" class="form-control
+                    @error('image')is-invalid @enderror">
+                    @error('image')
                     <div class="text-danger">
                     @enderror
                 </div>
@@ -42,7 +46,7 @@
                         @endforeach
                     </select>
                 </div> --}}
-                <div class="form-group my-3">
+                {{-- <div class="form-group my-3">
                     <label class="control-label">Tecnologie</label>
                     @foreach ($technologies as $technology)
                         <div>
@@ -50,7 +54,7 @@
                             <label class="form-check-label">{{ $technology->name }}</label>
                         </div>
                     @endforeach
-                </div>
+                </div> --}}
                 <div class="form-group my-3">
                     <label class="control-label">Contenuto</label>
                     <textarea type="text" class="form-control" placeholder="Contenuto" id="content" name="content"></textarea>
