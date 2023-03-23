@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 // controllers
+use App\Http\Controllers\Admin\ApartmentController;
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 
 /*
@@ -24,6 +25,7 @@ Route::get('/', function () {
 // route for dashboard
 Route::middleware(["auth", "verified"])->name("admin.")->prefix("admin")->group(function () {
     Route::get("/", [DashboardController::class, "index"])->name("dashboard");
+    Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
 });
 
 // Route::get('/dashboard', function () {
