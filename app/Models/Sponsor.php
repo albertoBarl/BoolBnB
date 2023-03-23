@@ -17,4 +17,8 @@ class Sponsor extends Model
     {
         return Str::slug($param, '-');
     }
+    public function sponsors()
+    {
+        return $this->belongsToMany(Sponsor::class);
+    }
 }
