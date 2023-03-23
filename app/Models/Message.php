@@ -12,7 +12,8 @@ class Message extends Model
 
     use HasFactory;
 
-    public static function generateSlug($name){
-        return Str::slug($name, '-');
+    public static function generateSlug($param)
+    {
+        return Str::slug($param, '-');
     }
 }

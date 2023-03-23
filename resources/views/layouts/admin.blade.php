@@ -85,6 +85,14 @@
                                 </a>
                             </li>
 
+                            {{-- sponsors --}}
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.sponsors.index' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.sponsors.index') }}"> <i class="fa-solid fa-building"></i>
+                                    Sponsors
+                                </a>
+                            </li>
+
 
                         </ul>
 
