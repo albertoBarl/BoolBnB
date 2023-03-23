@@ -27,8 +27,24 @@
                     @endif
                 </div>
                 <div class="form-element">
-                    <label class="control-label">Descrizione</label>
-                    <textarea rows="10" type="text" name="description" placeholder="Inserisci la descrizione"></textarea>
+                    <label class="control-label d-block">Descrizione</label>
+                    <textarea class="w-100" rows="10" type="text" name="description" placeholder="Inserisci la descrizione"></textarea>
+                </div>
+                <div class="form-group my-3">
+                    <label class="control-label">Titolo</label>
+                    <input type="number" class="form-control" placeholder="Metratura stanza" id="square_feet" name="square_feet">
+                </div>
+                <div class="form-group my-3">
+                    <label class="control-label">Titolo</label>
+                    <input type="number" class="form-control" placeholder="Numero bagni" id="bathroom" name="bathroom">
+                </div>
+                <div class="form-group my-3">
+                    <label class="control-label">Titolo</label>
+                    <input type="number" class="form-control" placeholder="Numero stanze" id="room" name="room">
+                </div>
+                <div class="form-group my-3">
+                    <label class="control-label">Titolo</label>
+                    <input type="text" class="form-control" placeholder="Indirizzo" id="address" name="address">
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">Copertina</label>
@@ -38,14 +54,26 @@
                     <div class="text-danger">
                     @enderror
                 </div>
-                {{-- <div class="form-group my-3">
+                <div class="form-group my-3">
+                    <label class="control-label">Titolo</label>
+                    <input type="number" class="form-control" placeholder="Latitudine" id="latitude" name="latitude">
+                </div>
+                <div class="form-group my-3">
+                    <label class="control-label">Titolo</label>
+                    <input type="number" class="form-control" placeholder="Longitudine" id="longitude" name="longitude">
+                </div>
+                <div class="form-group my-3">
+                    <label class="control-label">Titolo</label>
+                    <input type="number" class="form-control" placeholder="Prezzo" id="price" name="price">
+                </div>
+                <div class="form-group my-3">
                     <label class="control-label">Tipo</label>
-                    <select class="form-control" name="type_id" id="type_id">
-                        @foreach ($types as $type)
-                            <option value="{{ $type->id }}">{{ $type->name }}</option>
-                        @endforeach
+                    <select class="form-control" name="free_cancellation" id="free_cancellation">
+                        <option value="1">si</option>
+                        <option value="0">no</option>
                     </select>
-                </div> --}}
+                </div>
+                
                 {{-- <div class="form-group my-3">
                     <label class="control-label">Tecnologie</label>
                     @foreach ($technologies as $technology)
@@ -55,10 +83,6 @@
                         </div>
                     @endforeach
                 </div> --}}
-                <div class="form-group my-3">
-                    <label class="control-label">Contenuto</label>
-                    <textarea type="text" class="form-control" placeholder="Contenuto" id="content" name="content"></textarea>
-                </div>
                 <div class="form-group my-3">
                     <button type="submit" class="btn btn-sm btn-success">Salva progetto</button>
                 </div>

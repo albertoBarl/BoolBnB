@@ -65,7 +65,12 @@
                                         class="fa-solid fa-newspaper fa-lg fa-fw"></i> Services
                                 </a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.apartments.index') }}"> <i class="fa-solid fa-building"></i>
+                                    Appartamenti
+                                </a>
+                            </li>
 
                             {{-- sponsors --}}
                             <li class="nav-item">
