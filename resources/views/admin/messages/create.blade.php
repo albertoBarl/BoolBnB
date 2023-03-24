@@ -5,6 +5,15 @@
         <div class="col-12 my-5">
             <h2>Aggiungi Nuovo Messaggio</h2>
         </div>
+        @if($errors->any())
+        <div class="alert alert-danger">
+            <ul class="list-unstyled">
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <div class="col-12">
             <form action="{{ route('admin.messages.store')}}" method="POST">
                 @csrf
