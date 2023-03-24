@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApartmentsSponsorsTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +15,15 @@ class CreateApartmentsSponsorsTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('apartments_sponsors', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments');
-            $table->unsignedTinyInteger('sponsor_id');
-            $table->foreign('sponsor_id')->references('id')->on('sponsors');
-            $table->dateTime('date_of_start');
-            $table->dateTime('date_of_end');
-            $table->timestamps();
+            $table->string('email', 128);
+            $table->text('content');
+            $table->string('name', 32);
+            $table->string('surname', 32);
+            $table->string('slug');
         });
 
         Schema::enableForeignKeyConstraints();
@@ -36,6 +36,6 @@ class CreateApartmentsSponsorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apartments_sponsors');
+        Schema::dropIfExists('messages');
     }
 }

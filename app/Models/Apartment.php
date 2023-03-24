@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use app\Models\Service;
+use App\Models\Service;
 
 class Apartment extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $guarded = ["services"];
 
     // slug function
     public static function genSlug($param)

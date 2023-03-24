@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApartmentsServicesTable extends Migration
+class CreateApartmentSponsorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +15,14 @@ class CreateApartmentsServicesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('apartments_services', function (Blueprint $table) {
+        Schema::create('apartment_sponsor', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartments');
-            $table->unsignedBigInteger('service_id');
-            $table->foreign('service_id')->references('id')->on('services');
-            $table->timestamps();
+            $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete();
+            $table->unsignedTinyInteger('sponsor_id');
+            $table->foreign('sponsor_id')->references('id')->on('sponsors')->cascadeOnDelete();
+            $table->dateTime('date_of_start');
+            $table->dateTime('date_of_end');
         });
 
         Schema::enableForeignKeyConstraints();
@@ -34,6 +35,6 @@ class CreateApartmentsServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apartments_services');
+        Schema::dropIfExists('apartment_sponsor');
     }
 }

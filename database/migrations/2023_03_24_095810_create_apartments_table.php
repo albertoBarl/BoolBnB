@@ -13,7 +13,6 @@ class CreateApartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
 
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
@@ -30,7 +29,7 @@ class CreateApartmentsTable extends Migration
             $table->decimal('latitude', 8, 6);
             $table->decimal('longitude', 9, 6);
             $table->float('price');
-            $table->boolean('free_cancellation')->default(true);
+            $table->boolean('free_cancellation')->default(1);
             $table->timestamps();
         });
 
@@ -44,6 +43,7 @@ class CreateApartmentsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('apartments');
     }
 }
