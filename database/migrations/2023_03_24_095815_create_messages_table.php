@@ -24,6 +24,7 @@ class CreateMessagesTable extends Migration
             $table->string('name', 32);
             $table->string('surname', 32);
             $table->string('slug');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
