@@ -73,7 +73,7 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
+        return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
@@ -133,6 +133,8 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+
+        return redirect()->route('admin.apartments.index')->with('message', 'Progetto eliminato correttamente');
     }
 }
