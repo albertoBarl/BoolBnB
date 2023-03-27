@@ -22,30 +22,45 @@
                         Name
                     </label>
                     <input type="text" class="form-control" placeholder="Name" id="name" name="name">
+                    @error('name')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label class="control-label">
                         Surname
                     </label>
                     <input type="text" class="form-control" placeholder="Surname" id="surname" name="surname">
+                    @error('surname')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label class="control-label">
                         Email
                     </label>
                     <input type="email" class="form-control" placeholder="Email" id="email" name="email">
+                    @error('email')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-group mt-3">
                     <label class="control-label">
                          Contenuto
                     </label>
                     <input type="text" class="form-control" placeholder="Contenuto" id="content" name="content">
+                    @error('content')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-group mt-3">
                     <label class="control-label">
                          Apartment ID
                     </label>
                     <input type="text" class="form-control" placeholder="ID" id="apartment_id" name="apartment_id">
+                    @error('apartment_id')
+                        <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-group my-3">
                     <button type="submit" class="btn btn-success">Salva il Messaggio</button>

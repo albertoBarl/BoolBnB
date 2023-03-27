@@ -23,6 +23,7 @@ class CreateApartmentSponsorTable extends Migration
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->cascadeOnDelete();
             $table->dateTime('date_of_start');
             $table->dateTime('date_of_end');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

@@ -7,6 +7,15 @@
                     <div>
                         <h2>Elenco Messaggi</h2>
                     </div>
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="list-unstyled">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div>
                         <a href="{{ route('admin.messages.create')}}" class="btn btn-sm btn-danger">Aggiungi Mesaggi</a>
                     </div>

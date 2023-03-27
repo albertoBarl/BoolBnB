@@ -62,7 +62,7 @@ class ApartmentController extends Controller
             $newApartment->services()->attach($request->services);
         }
 
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.index')->with('message', 'Progetto creato correttamente');
     }
 
     /**
@@ -84,7 +84,8 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        $services = Service::all();
+        return view('admin.apartments.edit', compact('services' , 'apartment'));
     }
 
     /**
@@ -96,7 +97,32 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        $form_data = $request->validated();
+
+        $slug = Apartment::genSlug($request->title, '-');
+        $form_data['slug'] = $slug;
+
+        if($request->has('image')){
+            //SECONDO CONTROLLO PER CANCELLARE IL FILE PRECEDENTE SE PRESENTE
+            if($apartment->image){
+                Storage::delete($apartment->image);  
+            }
+            $path = Storage::disk('public')->put('a$apartment_images', $request->image);
+            
+            $form_data['image'] = $path;
+        }
+
+        $apartment->update($form_data);
+
+        if($request->has('technologies')){
+            // $apartment->technologies()->detach();
+            // $apartment->technologies()->attach($request->technologies);
+            //sono uguali sopra e sotto
+
+            $apartment->technologies()->sync($request->technologies);
+        }
+
+        return redirect()->route('admin.apartments.index')->with('message', 'Progetto modficato correttamente');
     }
 
     /**

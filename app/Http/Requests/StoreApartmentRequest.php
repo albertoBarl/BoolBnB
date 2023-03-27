@@ -57,7 +57,6 @@ class StoreApartmentRequest extends FormRequest
             'free_cancellations.required' => 'la opzione di cancellazione della prenotazione è richiesta',
             'image.image' => 'Inserire un formato di immagine valido',
             'title.unique' => 'esiste già un appartamento con questo titolo',
-            'image.image' => 'Inserire un formato di immagine valido'
         ];
     }
 }
