@@ -114,12 +114,12 @@ class ApartmentController extends Controller
 
         $apartment->update($form_data);
 
-        if($request->has('technologies')){
-            // $apartment->technologies()->detach();
-            // $apartment->technologies()->attach($request->technologies);
+        if($request->has('services')){
+            // $apartment->services()->detach();
+            // $apartment->services()->attach($request->services);
             //sono uguali sopra e sotto
 
-            $apartment->technologies()->sync($request->technologies);
+            $apartment->services()->sync($request->services);
         }
 
         return redirect()->route('admin.apartments.index')->with('message', 'Appartamento modficato correttamente');
