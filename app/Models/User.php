@@ -26,8 +26,6 @@ class User extends Authenticatable
         'email',
         'password',
         'surname',
-        'username',
-        'slug',
         'date_of_birth',
     ];
 
@@ -49,10 +47,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    // slug function
-    public static function genSlug($param)
-    {
-        return Str::slug($param, "-");
-    }
 }
