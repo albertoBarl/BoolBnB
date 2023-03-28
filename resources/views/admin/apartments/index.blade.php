@@ -39,7 +39,7 @@
                     <td>{{ $item->bathroom }}</td>
                     <td>{{ $item->room }}</td>
                     <td>{{ $item->address }}</td>
-                    <td>{{ $item->image }}</td>
+                    <td class="overflow-x">{{ $item->image }}</td>
                     <td>{{ $item->latitude }} - {{ $item->longitude }}</td>
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->free_cancellation }}</td>

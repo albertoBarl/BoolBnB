@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="col-12">
-            <h2 class="py-3">Aggiungi nuovo progetto</h2>
+            <h2 class="py-3">Aggiungi nuovo appartmento</h2>
         </div>
         <div class="col-12 py-3">
             <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
@@ -127,7 +127,7 @@
                         @endforeach
                     </div>
                     <div class="form-group my-3">
-                        <button type="submit" class="btn btn-sm btn-success">Salva progetto</button>
+                        <button type="submit" class="btn btn-sm btn-success">Salva appartamento</button>
                     </div>
             </form>
         </div>

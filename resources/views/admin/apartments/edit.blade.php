@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="col-12">
-            <h2 class="py-3">Aggiungi nuovo progetto</h2>
+            <h2 class="py-3">modifica appartamento</h2>
         </div>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -137,7 +137,7 @@
                         @endforeach
                     </div>
                     <div class="form-group my-3">
-                        <button type="submit" class="btn btn-sm btn-success">Salva progetto</button>
+                        <button type="submit" class="btn btn-sm btn-success">Modifica appartamento</button>
                     </div>
             </form>
         </div>
