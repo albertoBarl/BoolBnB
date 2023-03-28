@@ -31,10 +31,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:32', 'unique:' . User::class],
-            'date_of_birth' => ['required', 'date'],
+            'name' => ['nullable', 'string', 'max:255'],
+            'surname' => ['nullable', 'string', 'max:255'],
+            'date_of_birth' => ['nullable', 'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -43,8 +42,6 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'surname' => $request->surname,
-            'username' => $request->username,
-            'slug' => User::genSlug($request->username),
             'date_of_birth' => $request->date_of_birth,
             'password' => Hash::make($request->password),
         ]);

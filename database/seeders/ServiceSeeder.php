@@ -18,7 +18,7 @@ class ServiceSeeder extends Seeder
      */
     public function run()
     {
-        $services = ['wi-fi', 'Vista sul lago', 'Vista sulle montagne', 'Piscina', 'TV via cavo standard', 'Parcheggio gratuito nella proprietà', 'Cucina', 'Climatizzatore portatile'];
+        $services = ['Wi-fi', 'Vista sul lago', 'Vista sulle montagne', 'Piscina', 'TV via cavo standard', 'Parcheggio gratuito nella proprietà', 'Cucina', 'Climatizzatore portatile'];
 
         foreach ($services as $item) {
             $newType = new Service();
