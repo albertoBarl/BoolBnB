@@ -34,12 +34,12 @@
                     <td>{{ $item->user_id }}</td>
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->slug }}</td>
-                    <td>{{ $item->description }}</td>
+                    <td >{{ $item->description }}</td>
                     <td>{{ $item->square_feet }}</td>
                     <td>{{ $item->bathroom }}</td>
                     <td>{{ $item->room }}</td>
                     <td>{{ $item->address }}</td>
-                    <td class="overflow-x">{{ $item->image }}</td>
+                    <td class="d-inline-block text-truncate" style="max-width: 150px">{{ $item->image }}</td>
                     <td>{{ $item->latitude }} - {{ $item->longitude }}</td>
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->free_cancellation }}</td>
