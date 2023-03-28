@@ -62,7 +62,7 @@ class ApartmentController extends Controller
             $newApartment->services()->attach($request->services);
         }
 
-        return redirect()->route('admin.apartments.index')->with('message', 'Progetto creato correttamente');
+        return redirect()->route('admin.apartments.index')->with('message', 'Appartamento creato correttamente');
     }
 
     /**
@@ -122,7 +122,7 @@ class ApartmentController extends Controller
             $apartment->technologies()->sync($request->technologies);
         }
 
-        return redirect()->route('admin.apartments.index')->with('message', 'Progetto modficato correttamente');
+        return redirect()->route('admin.apartments.index')->with('message', 'Appartamento modficato correttamente');
     }
 
     /**
@@ -135,6 +135,6 @@ class ApartmentController extends Controller
     {
         $apartment->delete();
 
-        return redirect()->route('admin.apartments.index')->with('message', 'Progetto eliminato correttamente');
+        return redirect()->route('admin.apartments.index')->with('message', 'Appartamento eliminato correttamente');
     }
 }
