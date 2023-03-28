@@ -7,8 +7,6 @@
                     <h1 class="my-4">{{ $apartment->title }}</h1>
                     <h2>Contenuto:</h2>
                     <img src="{{asset('storage/'.$apartment->image)}}" alt="{{$apartment->title}}" class="w-50">
-                    <h2>Categoria:</h2>
-                    <p>{{ $apartment->type ?  $apartment->type->name : 'Senza categoria'}}</p>
                     <h2>Servizi:</h2>
                         @forelse ($apartment->services as $item)
                             <div>{{ $item->name }}</div>
