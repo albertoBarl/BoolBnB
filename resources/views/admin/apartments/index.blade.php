@@ -26,6 +26,7 @@
             <th>coordinate</th>
             <th>prezzo</th>
             <th>cancellazione gratuita</th>
+            <th>funzioni</th>
         </thead>
         <tbody>
             @foreach ($apartments as $item)
