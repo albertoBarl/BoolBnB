@@ -54,7 +54,7 @@
                             <form method="POST" action="{{ route('admin.apartments.destroy', $item->slug)}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-square btn-danger">
+                                <button type="submit" class="btn btn-sm btn-square btn-danger confirm-delete-button" data-bs-toggle="modal" data-bs-target="#delete-apartment-modal" data-title="{{$item->title}}">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
@@ -64,4 +64,5 @@
             @endforeach
         </tbody>
     </table>
+    @include('layouts.modals')
 @endsection
