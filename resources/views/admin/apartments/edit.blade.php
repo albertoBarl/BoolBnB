@@ -5,15 +5,6 @@
         <div class="col-12">
             <h2 class="py-3">Aggiungi nuovo progetto</h2>
         </div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="list-unstyled">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <div class="col-12 py-3">
             <form action="{{ route('admin.apartments.update', $apartment->slug) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
@@ -21,11 +12,11 @@
                 <div class="form-group my-3">
                     <label class="control-label">Titolo</label>
                     <input type="text" class="form-control" placeholder="Title" id="title" name="title" value="{{ old('title') ?? $apartment->title }}">
-                    @if ($errors->has('title'))
-                    <div class="text-danger">{{ $errors->first('title') }}</div>
-                    @endif
                     <div class="valid-feedback">
                         Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        il titolo inserito è scorretto!
                     </div>
                 </div>
                 <div class="form-element">
@@ -40,7 +31,7 @@
                     @endif
                 </div>
                 <div class="form-group my-3">
-                    <label class="control-label">n. Bagni</label>
+                    <label class="control-label valid-feedback">n. Bagni</label>
                     <input type="number" class="form-control" placeholder="Numero bagni" id="bathroom" name="bathroom" value="{{ old('bathroom') ?? $apartment->bathroom }}">
                     @if ($errors->has('bathroom'))
                     <div class="text-danger">{{ $errors->first('bathroom') }}</div>
@@ -92,14 +83,6 @@
                         @if ($errors->has('price'))
                     <div class="text-danger">{{ $errors->first('price') }}</div>
                     @endif
-                    </div>
-                    <div class="form-group my-3">
-                        <label class="control-label">Cancellazione gratuita?</label>
-                        <select class="form-control" name="free_cancellation" id="free_cancellation">
-                            <option selected disabled value="">seleziona...</option>
-                            <option value="1" {{ old('free_cancellation') == 1 ? 'selected' : '' }}>si</option>
-                            <option value="0" {{ old('free_cancellation') == 0 ? 'selected' : '' }}>no</option>
-                        </select>
                     </div>
                     <div class="form-group my-3">
                         <label class="control-label">Servizi</label>
