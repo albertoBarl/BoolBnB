@@ -17,7 +17,7 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name"
-                                        value="{{ old('name') }}" autofocus>
+                                        value="{{ old('name') }}">
                                 </div>
                             </div>
 

@@ -77,7 +77,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.apartments.index') }}"> <i class="fa-solid fa-building"></i>
-                                    Appartamenti
+                                    Apartments
                                 </a>
                             </li>
 
