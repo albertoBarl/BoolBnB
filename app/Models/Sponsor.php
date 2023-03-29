@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Apartment;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Sponsor extends Model
@@ -17,8 +18,8 @@ class Sponsor extends Model
     {
         return Str::slug($param, '-');
     }
-    public function sponsors()
+    public function apartments()
     {
-        return $this->belongsToMany(Sponsor::class);
+        return $this->belongsToMany(Apartment::class);
     }
 }
