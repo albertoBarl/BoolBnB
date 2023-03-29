@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Apartment;
 use App\Models\Service;
+use GuzzleHttp\Client;
 
 class ApartmentController extends Controller
 {
@@ -44,9 +45,25 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
 
+        // slug generation
         $slug = Apartment::genSlug($request->title);
-
         $form_data['slug'] = $slug;
+
+        // coordinates from address
+        $address = $form_data["address"];
+        $client = new \GuzzleHttp\Client([
+            "verify" => false
+        ]);
+        $response = $client->get('https://api.tomtom.com/search/2/geocode/' . urlencode($address) . '.json', [
+            'query' => [
+                'key' => 'B8Rs31GE9jOKMJ7W5iXNK0LjpI3IO5Rl'
+            ]
+        ]);
+        $result = json_decode($response->getBody(), true);
+        $latitude = $result['results'][0]['position']['lat'];
+        $longitude = $result['results'][0]['position']['lon'];
+        $form_data['latitude'] = $latitude;
+        $form_data['longitude'] = $longitude;
 
 
         if ($request->has('image')) {

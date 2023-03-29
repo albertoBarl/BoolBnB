@@ -31,8 +31,9 @@ class StoreApartmentRequest extends FormRequest
             'room' => ['required'],
             'address' => ['required'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            'latitude' => ['required'],
-            'longitude' => ['required'],
+            // 'latitude' => ['required'],
+            // 'longitude' => ['required'],
+            // commentati così da permettere allo store di registrare le coordinate dall'input indirizzo
             'price' => ['required'],
 
             'services' => ['exists:services,id'],
