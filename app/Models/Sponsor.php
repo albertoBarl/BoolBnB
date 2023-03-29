@@ -18,8 +18,8 @@ class Sponsor extends Model
     {
         return Str::slug($param, '-');
     }
-    public function apartment()
+    public function apartments()
     {
-        return $this->hasMany(Apartment::class);
+        return $this->belongsToMany(Apartment::class);
     }
 }
