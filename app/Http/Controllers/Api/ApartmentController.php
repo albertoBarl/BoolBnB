@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Apartment;
+use App\Models\Sponsor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
