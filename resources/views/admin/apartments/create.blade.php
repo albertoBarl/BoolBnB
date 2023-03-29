@@ -12,20 +12,20 @@
                     <label class="control-label">Titolo</label>
                     <input type="text" class="form-control" placeholder="Title" id="title" name="title" required>
                     <div class="valid-feedback">
-                        il titolo inserito è corretto!
+                        il titolo inserito è valido!
                       </div>
                       <div class="invalid-feedback">
-                        il titolo inserito non è corretto!
+                        il titolo inserito non è valido!
                       </div>
                 </div>
                 <div class="mb-3">
                     <label for="validationTextarea" class="form-label">Textarea</label>
                     <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" required placeholder="descriprion" name="description"></textarea>
                     <div class="invalid-feedback">
-                      Please enter a message in the textarea.
+                        la descrizione inserita è valida!
                     </div>
                     <div class="valid-feedback">
-                        il titolo inserito è corretto!
+                        la descrizione è valida!
                     </div>
                 </div>
                 <div class="form-group my-3">
@@ -36,37 +36,37 @@
                             i metri quadri sono validi!
                         </div>
                         <div class="invalid-feedback">
-                            i metri quadri inseriti non sono corretto!
+                            i metri quadri inseriti non sono validi!
                         </div>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">n. Bagni</label>
                     <input type="number" class="form-control" placeholder="Numero bagni" id="bathroom" name="bathroom" required>
                     <div class="valid-feedback">
-                        i bagni sono validi!
+                        il numero di bagni è valido!
                     </div>
                     <div class="invalid-feedback">
-                        i metri quadri inseriti non sono corretto!
+                        il numero di bagni inseriti non è valido!
                     </div>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">n. Stanze</label>
                     <input type="number" class="form-control" placeholder="Numero stanze" id="room" name="room" required>
                     <div class="valid-feedback">
-                        le stanze sono validi!
+                        il numero di stanze è valido!
                     </div>
                     <div class="invalid-feedback">
-                        i metri quadri inseriti non sono corretto!
+                        il numero di stanze inserite non è valido!
                     </div>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">Indirizzo</label>
                     <input type="text" class="form-control" placeholder="Indirizzo" id="address" name="address" required>
                     <div class="valid-feedback">
-                        l'indirizzo sono validi!
+                        l'indirizzo è valido!
                     </div>
                     <div class="invalid-feedback">
-                        i metri quadri inseriti non sono corretto!
+                        l'indirizzo non è valido!
                     </div>
                 </div>
                 <div class="form-group my-3">
