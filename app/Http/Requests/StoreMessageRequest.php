@@ -24,11 +24,12 @@ class StoreMessageRequest extends FormRequest
     public function rules()
     {
         return [
-                'name' => ['required'],
-                'surname' => ['required'],
-                'email' => ['required'],
-                'content' => ['required'],
-                'apartment_id' => ['required']
+            'name' => ['required'],
+            'surname' => ['required'],
+            'email' => ['required'],
+            'content' => ['required'],
+            'apartment_id' => ['required'],
+            'image' => ['nullable', 'image', 'dimension'],
         ];
     }
 
@@ -40,6 +41,7 @@ class StoreMessageRequest extends FormRequest
             'email.required' => 'L\'email è richiesta',
             'content.required' => 'Il contenuto è richiesto',
             'apartment_id.required' => 'L\'id apartment è richiesto',
+            'image.dimension' => 'Formato non valido'
         ];
     }
 }

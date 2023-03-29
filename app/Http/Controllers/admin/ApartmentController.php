@@ -85,7 +85,7 @@ class ApartmentController extends Controller
     public function edit(Apartment $apartment)
     {
         $services = Service::all();
-        return view('admin.apartments.edit', compact('services' , 'apartment'));
+        return view('admin.apartments.edit', compact('services', 'apartment'));
     }
 
     /**
@@ -102,19 +102,19 @@ class ApartmentController extends Controller
         $slug = Apartment::genSlug($request->title, '-');
         $form_data['slug'] = $slug;
 
-        if($request->has('image')){
+        if ($request->has('image')) {
             //SECONDO CONTROLLO PER CANCELLARE IL FILE PRECEDENTE SE PRESENTE
-            if($apartment->image){
-                Storage::delete($apartment->image);  
+            if ($apartment->image) {
+                Storage::delete($apartment->image);
             }
             $path = Storage::disk('public')->put('a$apartment_images', $request->image);
-            
+
             $form_data['image'] = $path;
         }
 
         $apartment->update($form_data);
 
-        if($request->has('services')){
+        if ($request->has('services')) {
             // $apartment->services()->detach();
             // $apartment->services()->attach($request->services);
             //sono uguali sopra e sotto

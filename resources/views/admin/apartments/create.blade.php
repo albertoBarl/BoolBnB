@@ -14,9 +14,9 @@
                     <div class="valid-feedback">
                         il titolo inserito è corretto!
                       </div>
-                    @if ($errors->any())
-                    <div class="text-danger">{{ $errors->first('title') }}</div>
-                    @endif
+                      <div class="invalid-feedback">
+                        il titolo inserito non è corretto!
+                      </div>
                 </div>
                 <div class="mb-3">
                     <label for="validationTextarea" class="form-label">Textarea</label>
@@ -24,9 +24,9 @@
                     <div class="invalid-feedback">
                       Please enter a message in the textarea.
                     </div>
-                    @if ($errors->any())
-                    <div class="text-danger">{{ $errors->first('description') }}</div>
-                    @endif
+                    <div class="valid-feedback">
+                        il titolo inserito è corretto!
+                    </div>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">Metri quadri</label>
@@ -34,49 +34,56 @@
                         name="square_feet" required>
                         <div class="valid-feedback">
                             i metri quadri sono validi!
-                          </div>
-                    @if ($errors->any())
-                            <div class="text-danger">{{ $errors->first('square_feet') }}</div>
-                    @endif
+                        </div>
+                        <div class="invalid-feedback">
+                            i metri quadri inseriti non sono corretto!
+                        </div>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">n. Bagni</label>
                     <input type="number" class="form-control" placeholder="Numero bagni" id="bathroom" name="bathroom" required>
                     <div class="valid-feedback">
                         i bagni sono validi!
-                      </div>
-                    @if ($errors->any())
-                    <div class="text-danger">{{ $errors->first('bathroom') }}</div>
-                    @endif
+                    </div>
+                    <div class="invalid-feedback">
+                        i metri quadri inseriti non sono corretto!
+                    </div>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">n. Stanze</label>
                     <input type="number" class="form-control" placeholder="Numero stanze" id="room" name="room" required>
                     <div class="valid-feedback">
                         le stanze sono validi!
-                      </div>
-                    @if ($errors->any())
-                    <div class="text-danger">{{ $errors->first('room') }}</div>
-                    @endif
+                    </div>
+                    <div class="invalid-feedback">
+                        i metri quadri inseriti non sono corretto!
+                    </div>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">Indirizzo</label>
                     <input type="text" class="form-control" placeholder="Indirizzo" id="address" name="address" required>
                     <div class="valid-feedback">
                         l'indirizzo sono validi!
-                      </div>
-                    @if ($errors->any())
-                    <div class="text-danger">{{ $errors->first('address') }}</div>
-                    @endif
+                    </div>
+                    <div class="invalid-feedback">
+                        i metri quadri inseriti non sono corretto!
+                    </div>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">Copertina</label>
                     <input type="file" name="image" id="image"
                         class="form-control
                     @error('image')is-invalid @enderror" required>
-                    @error('image')
-                        <div class="text-danger">
-                        @enderror
+                        <div class="invalid-feedback">
+                            <ul class="text-danger">
+                                <li>
+                                    formati compatibili: jpeg,png,jpg,gif,svg 
+                                </li>
+                                <li>
+                                    dimensione massima 2mb
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="form-group my-3">
                         <label class="control-label">Latitudine</label>
@@ -84,9 +91,9 @@
                         <div class="valid-feedback">
                             latitudine valida!
                           </div>
-                        @if ($errors->any())
-                        <div class="text-danger">{{ $errors->first('latitude') }}</div>
-                        @endif
+                          <div class="invalid-feedback">
+                            i metri quadri inseriti non sono corretto!
+                        </div>
                     </div>
                     <div class="form-group my-3">
                         <label class="control-label">Longitudine</label>
@@ -95,9 +102,9 @@
                         <div class="valid-feedback">
                             longitudine valida!
                         </div>
-                        @if ($errors->any())
-                        <div class="text-danger">{{ $errors->first('longitude') }}</div>
-                        @endif
+                        <div class="invalid-feedback">
+                            i metri quadri inseriti non sono corretto!
+                        </div>
                     </div>
                     <div class="form-group my-3">
                         <label class="control-label">Prezzo</label>
@@ -105,17 +112,9 @@
                         <div class="valid-feedback">
                             prezzo valida!
                         </div>
-                        @if ($errors->any())
-                        <div class="text-danger">{{ $errors->first('price') }}</div>
-                        @endif
-                    </div>
-                    <div class="form-group my-3">
-                        <label class="control-label">Cancellazione gratuita?</label>
-                        <select class="form-control" name="free_cancellation" id="free_cancellation" required>
-                            <option selected disabled value="">seleziona...</option>
-                            <option value="1">si</option>
-                            <option value="0">no</option>
-                        </select>
+                        <div class="invalid-feedback">
+                            i metri quadri inseriti non sono corretto!
+                        </div>
                     </div>
                     <div class="form-group my-3">
                         <label class="control-label">Servizi</label>
