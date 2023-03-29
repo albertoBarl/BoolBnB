@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="col-12">
-            <h2 class="py-3">Aggiungi nuovo progetto</h2>
+            <h2 class="py-3">Modifica appartamento</h2>
         </div>
         <div class="col-12 py-3">
             <form action="{{ route('admin.apartments.update', $apartment->slug) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
@@ -12,16 +12,16 @@
                 <div class="form-group my-3">
                     <label class="control-label">Titolo</label>
                     <input type="text" class="form-control" placeholder="Title" id="title" name="title" value="{{ old('title') ?? $apartment->title }}">
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div class="invalid-feedback">
-                        il titolo inserito è scorretto!
-                    </div>
+                    @if ($errors->has('title'))
+                    <div class="text-danger">{{ $errors->first('title') }}</div>
+                    @endif
                 </div>
                 <div class="form-element">
                     <label class="control-label d-block">Descrizione</label>
                     <textarea class="w-100" rows="10" type="text" name="description" placeholder="Inserisci la descrizione">{{ old('description') ?? $apartment->description }}</textarea>
+                    @if ($errors->has('description'))
+                    <div class="text-danger">{{ $errors->first('description') }}</div>
+                    @endif
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">Metri quadri</label>
@@ -31,7 +31,7 @@
                     @endif
                 </div>
                 <div class="form-group my-3">
-                    <label class="control-label valid-feedback">n. Bagni</label>
+                    <label class="control-label">n. Bagni</label>
                     <input type="number" class="form-control" placeholder="Numero bagni" id="bathroom" name="bathroom" value="{{ old('bathroom') ?? $apartment->bathroom }}">
                     @if ($errors->has('bathroom'))
                     <div class="text-danger">{{ $errors->first('bathroom') }}</div>

@@ -43,17 +43,17 @@ class UpdateApartmentRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Il titolo è richiesto.',
+            'title.required' => 'Il titolo non può essere nullo.',
             'title.unique' => 'Esiste già un appartamento con questo titolo.',
-            'description.required' => 'la descrizione è richiesta.',
-            'square_feet.required' => 'la metratura è richiesta.',
-            'bathroom.required' => 'Il numero di bagni è richiesto.',
-            'room.required' => 'Il numero di stanze è richiesto.',
-            'address.required' => 'Indirizzo richiesto.',
-            'image.required' => 'Almeno un immagine è richiesta.',
-            'latitude.required' => 'La latitudine è richiesta.',
-            'longitude.required' => 'La longitudine è richiesta.',
-            'price.required' => 'Il prezzo è richiesto.',
+            'description.required' => 'la descrizione non può essere nulla.',
+            'square_feet.required' => 'la metratura non può essere nulla.',
+            'bathroom.required' => 'Il numero di bagni non può essere nullo.',
+            'room.required' => 'Il numero di stanze non può essere nullo.',
+            'address.required' => 'L\' Indirizzo non può essere nullo.',
+            'image.required' => 'Inserire almeno un\' immagine valida.',
+            'latitude.required' => 'La latitudine non può essere nulla.',
+            'longitude.required' => 'La longitudine non può essere nulla.',
+            'price.required' => 'Il prezzo non può essere nullo.',
             'image.image' => 'Inserire un formato di immagine valido.',
         ];
     }

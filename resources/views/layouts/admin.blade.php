@@ -76,7 +76,7 @@
                             {{-- appartamenti --}}
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.apartments.index') }}"> <i class="fa-solid fa-building"></i>
+                                    href="{{ route('admin.apartments.index') }}"> <i class="fa-solid fa-building fa-lg fa-fw"></i>
                                     Apartments
                                 </a>
                             </li>
@@ -85,7 +85,7 @@
                             {{-- sponsors --}}
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.sponsors.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.sponsors.index') }}"> <i class="fa-solid fa-building"></i>
+                                    href="{{ route('admin.sponsors.index') }}"> <i class="fa-solid fa-dollar-sign fa-lg fa-fw"></i>
                                     Sponsors
                                 </a>
                             </li>
