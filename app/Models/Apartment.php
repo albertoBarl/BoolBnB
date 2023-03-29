@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use App\Models\Service;
+use App\Models\Sponsor;
 
 class Apartment extends Model
 {
@@ -20,5 +21,8 @@ class Apartment extends Model
     public function services()
     {
         return $this->belongsToMany(Service::class);
+    }
+    public function sponsor(){
+        return $this->belongsTo(Sponsor::class);
     }
 }
