@@ -20,6 +20,9 @@
         integrity='sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=='
         crossorigin='anonymous' referrerpolicy='no-referrer' />
 
+    {{-- payments w/Braintree --}}
+    <script src="https://js.braintreegateway.com/web/dropin/1.36.0/js/dropin.min.js"></script>
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
@@ -76,7 +79,8 @@
                             {{-- appartamenti --}}
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.apartments.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.apartments.index') }}"> <i class="fa-solid fa-building fa-lg fa-fw"></i>
+                                    href="{{ route('admin.apartments.index') }}"> <i
+                                        class="fa-solid fa-building fa-lg fa-fw"></i>
                                     Apartments
                                 </a>
                             </li>
@@ -85,7 +89,8 @@
                             {{-- sponsors --}}
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.sponsors.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.sponsors.index') }}"> <i class="fa-solid fa-dollar-sign fa-lg fa-fw"></i>
+                                    href="{{ route('admin.sponsors.index') }}"> <i
+                                        class="fa-solid fa-dollar-sign fa-lg fa-fw"></i>
                                     Sponsors
                                 </a>
                             </li>
