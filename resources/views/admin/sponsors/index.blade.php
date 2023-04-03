@@ -1,6 +1,47 @@
 @extends('layouts.admin')
 @section('content')
-    TEST SPONSOR
+    <section id="sponsor-page" class="container-fluid p-3">
+        <h3 class="text-uppercase">available sponsor</h3>
+        <div class="row gap-2 gap-lg-5">
+            @foreach ($sponsors as $item)
+                <div class="col-12 col-lg-3 card p-2">
+                    <h5 class="card-title text-center text-uppercase">{{ $item->title }}</h5>
+                    <p class="card-body">Metti in <strong>"evidenza"</strong> il tuo appartamento per {{ $item->duration }}
+                        ore a soli <span class="p-1">${{ $item->price }}</span>.
+                    </p>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <form action="{{ route('admin.sponsorships.store') }}" method="POST">
+        {{-- {{ route('admin.sponsorships.store') }} --}}
+        @csrf
+        <div class="form-group my-3">
+            <label class="control-label">Select a sponsorship:</label>
+            <select name="sponsor" id="sponsor">
+                @foreach ($sponsors as $item)
+                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group my-3">
+            <label class="control-label">Select an apartment:</label>
+            <select name="apartment" id="apartment">
+                @foreach ($apartments as $item)
+                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group my-3">
+            <label class="control-label"></label>
+            <input type="date" name="date_of_start" value="date_of_start">
+        </div>
+        <div class="form-group my-3">
+            <button type="submit" class="btn btn-sm btn-success">Subscribe</button>
+        </div>
+    </form>
+
     @if (session('success_message'))
         <div class="alert alert-success">
             {{ session('success_message') }}
@@ -18,7 +59,6 @@
 
     <form method="post" id="payment-form" action="{{ url('/checkout') }}">
         @csrf
-        {{-- < ?php echo $baseUrl; ?>checkout.php   <--in action  --}}
         <section>
             <label for="amount">
                 <span class="input-label">Amount</span>
