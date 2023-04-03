@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSponsorRequest;
 use App\Http\Requests\UpdateSponsorRequest;
 use App\Models\Sponsor;
+use Braintree;
 
 class SponsorController extends Controller
 {
@@ -17,8 +18,15 @@ class SponsorController extends Controller
      */
     public function index()
     {
+        $gateway = new Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+        $token = $gateway->ClientToken()->generate();
         $sponsors = Sponsor::all();
-        return view("admin.sponsors.index");
+        return view("admin.sponsors.index", compact("sponsors", 'token'));
     }
 
     /**
