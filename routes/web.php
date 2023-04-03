@@ -23,16 +23,9 @@ use App\Http\Controllers\Admin\MessageController;
 |
 */
 
-// Route::get('/', function () {
-//     $gateway = new Braintree\Gateway([
-//         'environment' => config('services.braintree.environment'),
-//         'merchantId' => config('services.braintree.merchantId'),
-//         'publicKey' => config('services.braintree.publicKey'),
-//         'privateKey' => config('services.braintree.privateKey')
-//     ]);
-//     $token = $gateway->ClientToken()->generate();
-//     return view('welcome', ['token' => $token]);
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // route for dashboard
 Route::middleware(["auth", "verified"])->name("admin.")->prefix("admin")->group(function () {
