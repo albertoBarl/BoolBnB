@@ -14,7 +14,7 @@
         </div>
     </section>
 
-    <form action="{{ route('admin.sponsorships.store') }}" method="POST">
+    <form action="#" method="POST">
         {{-- {{ route('admin.sponsorships.store') }} --}}
         @csrf
         <div class="form-group my-3">

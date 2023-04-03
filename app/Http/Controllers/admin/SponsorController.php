@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\StoreSponsorRequest;
 use App\Http\Requests\UpdateSponsorRequest;
+use App\Models\Apartment;
 use App\Models\Sponsor;
 use Braintree;
 
@@ -26,7 +27,8 @@ class SponsorController extends Controller
         ]);
         $token = $gateway->ClientToken()->generate();
         $sponsors = Sponsor::all();
-        return view("admin.sponsors.index", compact("sponsors", 'token'));
+        $apartments = Apartment::all();
+        return view("admin.sponsors.index", compact("sponsors", "apartments", 'token'));
     }
 
     /**
