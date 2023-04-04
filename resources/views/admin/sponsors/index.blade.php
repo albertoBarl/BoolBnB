@@ -20,18 +20,18 @@
             <form action="#" method="POST">
                 {{-- {{ route('admin.sponsorships.store') }} --}}
                 @csrf
-                <div class="form-group my-3">
+                <div id="formAp" class="form-group my-3">
                     <label class="control-label">Select an apartment:</label>
                     <select name="apartment_id" id="apartment">
                         @foreach ($apartments as $item)
                             <option value="{{ $item->id }}">{{ $item->title }}</option>
                         @endforeach
                     </select>
-                    <input type="text" name="sponsor_id" id="sponsor_title" value="" readonly>
+                    <input type="tel" name="sponsorship_price" id="sponsorship_price" value="" readonly>
                 </div>
                 <div class="form-group my-3">
-                    <label class="control-label">Subscription starts on:</label>
-                    <input type="date" name="date_of_start" value="date_of_start" readonly>
+                    <label class="control-label">Subscription begins on:</label>
+                    <input type="date" id="date_of_start" name="date_of_start" value="date_of_start" readonly>
                 </div>
                 <div class="form-group my-3">
                     <button type="submit" class="btn btn-sm btn-success">Subscribe</button>
@@ -43,10 +43,11 @@
             @foreach ($sponsors as $item)
                 <div class="col-12 col-lg-3 card p-2">
                     <h5 class="card-title text-center text-uppercase">{{ $item->title }}</h5>
-                    <p class="card-body">Metti in <strong>"evidenza"</strong> il tuo appartamento per {{ $item->duration }}
-                        ore a soli <span class="p-1">${{ $item->price }}</span>.
+                    <p class="card-body"><strong>"Highlights"</strong> your apartment for
+                        <strong>{{ $item->duration }}</strong>
+                        hours for only <strong>${{ $item->price }}</strong>.
                     </p>
-                    <button type="button" class="btn btn-light selectedChoice" value="{{ $item->price }}"
+                    <button type="button" class="btn btn-light" value="{{ $item->price }}"
                         onclick="getPrice({{ $item->price }})" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">${{ $item->price }}</button>
                 </div>
@@ -89,19 +90,53 @@
 
     </section>
 
-    {{-- payments --}}
     <script>
+        // payments
         var form = document.querySelector('#payment-form');
         var client_token = "{{ $token }}";
 
         function getPrice(price) {
             let priceOf = document.getElementById("amount");
             priceOf.value = price;
-        }
 
-        function getTitle(title) {
-            let titleOf = document.getElementById("sponsor_title");
-            return titleOf.value = title;
+            let sponsorshipPrice = document.getElementById("sponsorship_price");
+            let formAp = document.getElementById("formAp");
+            switch (sponsorshipPrice.value = price) {
+                case 2.99:
+                    sponsorshipPrice.value = "Basic";
+                    let input1 = document.createElement("input");
+                    input1.setAttribute("type", "hidden");
+                    input1.setAttribute("name", "sponsor_id");
+                    input1.setAttribute("id", "sponsor_title");
+                    input1.setAttribute("value", "0");
+                    input1.setAttribute("readonly", "readonly");
+                    formAp.appendChild(input1);
+                    break;
+
+                case 5.99:
+                    sponsorshipPrice.value = "Advanced";
+                    let input2 = document.createElement("input");
+                    input2.setAttribute("type", "hidden");
+                    input2.setAttribute("name", "sponsor_id");
+                    input2.setAttribute("id", "sponsor_title");
+                    input2.setAttribute("value", "1");
+                    input2.setAttribute("readonly", "readonly");
+                    formAp.appendChild(input2);
+                    break;
+
+                case 9.99:
+                    sponsorshipPrice.value = "Premium";
+                    let input3 = document.createElement("input");
+                    input3.setAttribute("type", "hidden");
+                    input3.setAttribute("name", "sponsor_id");
+                    input3.setAttribute("id", "sponsor_title");
+                    input3.setAttribute("value", "2");
+                    input3.setAttribute("readonly", "readonly");
+                    formAp.appendChild(input3);
+                    break;
+                default:
+                    break;
+            }
         }
 
         braintree.dropin.create({
@@ -127,6 +162,12 @@
                 });
             });
         });
+
+
+        // date of start column
+        let dateOfStart = document.getElementById("date_of_start").value;
+        let today = new Date().toISOString().substr(0, 10);
+        dateOfStart = today;
     </script>
 
 @endsection
