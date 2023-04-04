@@ -27,14 +27,10 @@
                             <option value="{{ $item->id }}">{{ $item->title }}</option>
                         @endforeach
                     </select>
-                    <input name="sponsor_id" id="apartment" readonly>
-                    @foreach ($apartments as $item)
-                        <option value="{{ $item->id }}">{{ $item->title }}</option>
-                    @endforeach
-                    </input>
+                    <input type="text" name="sponsor_id" id="apartment" readonly>
                 </div>
                 <div class="form-group my-3">
-                    <label class="control-label"></label>
+                    <label class="control-label">Subscription starts on:</label>
                     <input type="date" name="date_of_start" value="date_of_start" readonly>
                 </div>
                 <div class="form-group my-3">
