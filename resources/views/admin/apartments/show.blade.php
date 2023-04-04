@@ -26,14 +26,6 @@
                     <p>{{ $apartment->address }}</p>
                     <h2>Coordinate:</h2>
                     <p>{{ $apartment->latitude }} - {{ $apartment->longitude }}</p>
-                    <h2>Prezzo:</h2>
-                    <p>{{ $apartment->price }}</p>
-                    <h2>Cancellazione gratutita:</h2>
-                    @if ($apartment->free_cancellation)
-                        <p>Si</p>
-                    @else
-                        <p>No</p>
-                    @endif
                     <a href="{{ route('admin.apartments.index') }}">Torna all'elenco</a>
                 </div>
             </div>

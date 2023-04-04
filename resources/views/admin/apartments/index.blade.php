@@ -24,8 +24,6 @@
             <th>indirizzo</th>
             <th>immagini</th>
             <th>coordinate</th>
-            <th>prezzo</th>
-            <th>cancellazione gratuita</th>
             <th>funzioni</th>
         </thead>
         <tbody>
@@ -42,8 +40,6 @@
                     <td>{{ $item->address }}</td>
                     <td class="d-inline-block text-truncate" style="max-width: 150px">{{ $item->image }}</td>
                     <td>{{ $item->latitude }} - {{ $item->longitude }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ $item->free_cancellation }}</td>
                     <td>
                         <div class="d-flex">
                             <a class="btn btn-sm btn-square btn-primary" href="{{ route('admin.apartments.show', $item->slug)}}" title="Visualizza appartamento">
