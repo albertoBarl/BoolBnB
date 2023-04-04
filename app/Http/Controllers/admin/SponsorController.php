@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 
 use App\Http\Requests\StoreSponsorRequest;
 use App\Http\Requests\UpdateSponsorRequest;
@@ -96,4 +98,14 @@ class SponsorController extends Controller
     {
         //
     }
+
+    // public function subscribe(Request $request)
+    // {
+    //     // $sponsor = new Sponsor();
+    //     // $apartmentId = $request->input("apartment_id");
+    //     // $sponsorId = $request->input('sponsor_id');
+    //     // $dateOfStart = $request->input('date_of_start');
+
+    //     // $sponsor->apartments()->attach([$apartmentId, $sponsorId], ['date_of_start' => $dateOfStart]);
+    // }
 }

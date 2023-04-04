@@ -22,11 +22,16 @@
                 @csrf
                 <div class="form-group my-3">
                     <label class="control-label">Select an apartment:</label>
-                    <select name="apartment" id="apartment">
+                    <select name="apartment_id" id="apartment">
                         @foreach ($apartments as $item)
                             <option value="{{ $item->id }}">{{ $item->title }}</option>
                         @endforeach
                     </select>
+                    <input name="sponsor_id" id="apartment" readonly>
+                    @foreach ($apartments as $item)
+                        <option value="{{ $item->id }}">{{ $item->title }}</option>
+                    @endforeach
+                    </input>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label"></label>
@@ -94,9 +99,9 @@
         var client_token = "{{ $token }}";
 
 
-        function getPrice($price) {
+        function getPrice(price) {
             let priceOf = document.getElementById("amount");
-            return priceOf.value = $price
+            return priceOf.value = price;
         }
 
         braintree.dropin.create({
