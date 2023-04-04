@@ -47,7 +47,7 @@
                         <strong>{{ $item->duration }}</strong>
                         hours for only <strong>${{ $item->price }}</strong>.
                     </p>
-                    <button type="button" class="btn btn-light" value="{{ $item->price }}"
+                    <button type="button" class="mybtn btn btn-light" value="{{ $item->price }}"
                         onclick="getPrice({{ $item->price }})" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">${{ $item->price }}</button>
                 </div>
@@ -105,7 +105,7 @@
                 case 2.99:
                     sponsorshipPrice.value = "Basic";
                     let input1 = document.createElement("input");
-                    input1.setAttribute("type", "hidden");
+                    input1.setAttribute("type", "text");
                     input1.setAttribute("name", "sponsor_id");
                     input1.setAttribute("id", "sponsor_title");
                     input1.setAttribute("value", "0");
@@ -116,7 +116,7 @@
                 case 5.99:
                     sponsorshipPrice.value = "Advanced";
                     let input2 = document.createElement("input");
-                    input2.setAttribute("type", "hidden");
+                    input2.setAttribute("type", "text");
                     input2.setAttribute("name", "sponsor_id");
                     input2.setAttribute("id", "sponsor_title");
                     input2.setAttribute("value", "1");
@@ -127,7 +127,7 @@
                 case 9.99:
                     sponsorshipPrice.value = "Premium";
                     let input3 = document.createElement("input");
-                    input3.setAttribute("type", "hidden");
+                    input3.setAttribute("type", "text");
                     input3.setAttribute("name", "sponsor_id");
                     input3.setAttribute("id", "sponsor_title");
                     input3.setAttribute("value", "2");
@@ -159,15 +159,25 @@
                     // Add the nonce to the form and submit
                     document.querySelector('#nonce').value = payload.nonce;
                     form.submit();
+
                 });
             });
         });
+
+
 
 
         // date of start column
         let dateOfStart = document.getElementById("date_of_start").value;
         let today = new Date().toISOString().substr(0, 10);
         dateOfStart = today;
+
+        // disable buttons on payment success
+        // const buttonsToDisable = document.querySelectorAll('.mybtn');
+        // // Disabilita i bottoni selezionati
+        // buttonsToDisable.forEach(button => {
+        //     button.disabled = true;
+        // });
     </script>
 
 @endsection
