@@ -27,7 +27,7 @@
                             <option value="{{ $item->id }}">{{ $item->title }}</option>
                         @endforeach
                     </select>
-                    <input type="text" name="sponsor_id" id="apartment" readonly>
+                    <input type="text" name="sponsor_id" id="sponsor_title" value="" readonly>
                 </div>
                 <div class="form-group my-3">
                     <label class="control-label">Subscription starts on:</label>
@@ -94,10 +94,14 @@
         var form = document.querySelector('#payment-form');
         var client_token = "{{ $token }}";
 
-
         function getPrice(price) {
             let priceOf = document.getElementById("amount");
-            return priceOf.value = price;
+            priceOf.value = price;
+        }
+
+        function getTitle(title) {
+            let titleOf = document.getElementById("sponsor_title");
+            return titleOf.value = title;
         }
 
         braintree.dropin.create({
