@@ -5,8 +5,8 @@
             <div class="col-12">
                 <div class="">
                     <h1 class="my-4">{{ $apartment->title }}</h1>
-                    <h2>Contenuto:</h2>
-                    <img src="{{asset('storage/'.$apartment->image)}}" alt="{{$apartment->title}}" class="w-50">
+                    <h2>Copertina:</h2>
+                    <img src="{{ $apartment->image }}" alt="{{$apartment->title}}" class="w-50">
                     <h2>Servizi:</h2>
                         @forelse ($apartment->services as $item)
                             <div>{{ $item->name }}</div>
