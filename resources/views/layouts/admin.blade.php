@@ -32,17 +32,19 @@
 
         <header class="navbar sticky-top flex-md-nowrap p-2 shadow-sm my_header">
 
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 ms-sm-5 ms-md-2" href="/">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 ms-3" href="/">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png" alt="airbnb-logo-lg" class="airbnblogo">
             </a>
 
-            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
-                data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <!-- <input class="form-control form-control-dark w-100" type="text" Placeholder="Search"> -->
             <div class="navbar nav">
-                <div class="nav-item text-nowrap ms-2">
+
+                <button class="navbar-toggler position-absolute d-md-none collapsed me-5 my_togglerbtn" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+                    <span class="navbar-toggler-icon my_togglerbtnico"></span>
+                </button>
+
+                <div class="nav-item text-nowrap ms-5">
                     <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
