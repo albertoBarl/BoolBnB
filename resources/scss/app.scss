@@ -1,4 +1,6 @@
+
 @import '~bootstrap/scss/bootstrap';
+@import "./partials/variable";
 @import url('https://fonts.cdnfonts.com/css/circular-std');
 
 *{
@@ -6,6 +8,18 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Circular Std', sans-serif;  
+}
+
+// SPONSOR PAGE
+#sponsor-page {
+    .card {
+        background-color: $pink-bnb;
+        color: white;
+        border: 3px solid black;
+        .card-title {
+            color: $dark-bnb;
+        }
+    }
 }
 
 footer ul{
@@ -47,3 +61,16 @@ footer ul{
         margin: 0 auto;
     }
 }
+
+// SPONSOR PAGE
+#sponsor-page {
+    .card {
+        background-color: $pink-bnb;
+        color: white;
+        border: 3px solid black;
+        .card-title {
+            color: $dark-bnb;
+        }
+    }
+}
+
