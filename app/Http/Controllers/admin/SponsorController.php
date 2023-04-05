@@ -19,18 +19,11 @@ class SponsorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $gateway = new Braintree\Gateway([
-            'environment' => config('services.braintree.environment'),
-            'merchantId' => config('services.braintree.merchantId'),
-            'publicKey' => config('services.braintree.publicKey'),
-            'privateKey' => config('services.braintree.privateKey')
-        ]);
-        $token = $gateway->ClientToken()->generate();
         $sponsors = Sponsor::all();
-        $apartments = Apartment::all();
-        return view("admin.sponsors.index", compact("sponsors", "apartments", 'token'));
+        $apSlug = $request->apSlug;
+        return view("admin.sponsors.index", compact("sponsors", "apartments"));
     }
 
     /**
@@ -95,9 +88,21 @@ class SponsorController extends Controller
      * @param  \App\Models\Sponsor  $sponsor
      * @return \Illuminate\Http\Response
      */
-    public function show(Sponsor $sponsor)
+    public function show(Request $request)
     {
-        return view("admin.sponsors.show", compact("sponsor"));
+
+        $apSlug = $request->apSlug;
+        $sponsor = Sponsor::findOrFail($request->id);
+
+        // payments
+        $gateway = new Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+        $token = $gateway->ClientToken()->generate();
+        return view("admin.sponsors.show", compact("apSlug", "sponsor", "token"));
     }
 
     /**
@@ -130,6 +135,10 @@ class SponsorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Sponsor $sponsor)
+    {
+        //
+    }
+    public function payment(Request $request)
     {
         //
     }

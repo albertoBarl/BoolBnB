@@ -41,7 +41,9 @@ Route::middleware(["auth", "verified"])->name("admin.")->prefix("admin")->group(
     ]);
     $token = $gateway->ClientToken()->generate();
 
-    Route::resource('sponsors', SponsorController::class);
+    Route::get('/sponsors/{apSlug}', [SponsorController::class, 'index'])->name('sponsors.index');
+    Route::get('/sponsors/{apSlug}/{id}', [SponsorController::class, 'show'])->name('sponsors.show');
+    // Route::post('/sponsors/{apSlug}/{id}/payment', [SponsorController::class, 'processPayment'])->name('sponsors.payment');
 
     Route::resource('services', ServiceController::class)->parameters(['services' => 'services:slug']);
 });
@@ -66,7 +68,6 @@ Route::post("/checkout", function (Request $request) {
 
     if ($result->success) {
         $transaction = $result->transaction;
-        // header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
         return back()->with("success_message", "Transaction successfull. The ID is:" . $transaction->id);
     } else {
         $errorString = "";
@@ -74,9 +75,6 @@ Route::post("/checkout", function (Request $request) {
         foreach ($result->errors->deepAll() as $error) {
             $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
         }
-
-        // $_SESSION["errors"] = $errorString;
-        // header("Location: " . $baseUrl . "index.php");
         return back()->withErrors("An error occurred with the message:" . $result->message);
     }
 });
