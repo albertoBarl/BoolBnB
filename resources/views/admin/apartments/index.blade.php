@@ -20,7 +20,6 @@
             <th>bedrooms</th>
             <th>address</th>
             <th>image</th>
-            <th>price</th>
             <th>actions:</th>
         </thead>
         <tbody>
@@ -33,7 +32,6 @@
                     <td>{{ $item->room }}</td>
                     <td>{{ $item->address }}</td>
                     <td class="d-inline-block text-truncate" style="max-width: 150px">{{ $item->image }}</td>
-                    <td>{{ $item->price }}</td>
                     <td>
                         <div class="d-flex">
                             <a class="btn btn-sm btn-square btn-primary"
