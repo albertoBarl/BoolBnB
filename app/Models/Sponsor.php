@@ -12,7 +12,7 @@ class Sponsor extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ["apartment_id", "sponsor_id", "date_of_start", "date_of_end"];
 
     public static function genSlug($param)
     {

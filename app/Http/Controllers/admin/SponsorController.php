@@ -40,7 +40,8 @@ class SponsorController extends Controller
      */
     public function create()
     {
-        //
+        $apartments = Apartment::all();
+        return view(compact('apartments'));
     }
 
     /**
@@ -51,7 +52,41 @@ class SponsorController extends Controller
      */
     public function store(StoreSponsorRequest $request)
     {
-        //
+        $form_data = $request->all();
+        $sponsorship = Sponsor::create($form_data);
+        // $sponsor = new Sponsor();
+        $apartmentId = $request->input("apartment_id");
+        $sponsorshipReq = $request->input('sponsorship_price');
+        $sponsorId = "";
+        $nDays = "";
+        switch ($sponsorshipReq) {
+            case 'Basic':
+                $sponsorId = 0;
+                $nDays = 1;
+                break;
+            case 'Advanced':
+                $sponsorId = 1;
+                $nDays = 3;
+                break;
+            case 'Premium':
+                $sponsorId = 2;
+                $nDays = 6;
+                break;
+            default:
+                break;
+        };
+
+        $dateOfStart = date("Y-m-d");
+        $dateOfEnd = addDaysToDate($dateOfStart, $nDays);
+        function addDaysToDate($dateOfStart, $nDays)
+        {
+            $dateOfEnd = date('Y-m-d', strtotime($dateOfStart . ' +' . $nDays . ' days'));
+            return $dateOfEnd;
+        }
+
+        if ($request->has('apartments')) {
+            $sponsorship->apartments()->attach($apartmentId, ['sponsor_id' => $sponsorId], ['date_of_start' => $dateOfStart], ['date_of_end' => $dateOfEnd]);
+        }
     }
 
     /**
@@ -98,14 +133,4 @@ class SponsorController extends Controller
     {
         //
     }
-
-    // public function subscribe(Request $request)
-    // {
-    //     // $sponsor = new Sponsor();
-    //     // $apartmentId = $request->input("apartment_id");
-    //     // $sponsorId = $request->input('sponsor_id');
-    //     // $dateOfStart = $request->input('date_of_start');
-
-    //     // $sponsor->apartments()->attach([$apartmentId, $sponsorId], ['date_of_start' => $dateOfStart]);
-    // }
 }

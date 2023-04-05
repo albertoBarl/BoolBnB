@@ -17,28 +17,29 @@
                     </ul>
                 </div>
             @endif
-            <form action="#" method="POST">
+
+            <form action="{{ route('admin.sponsors.store') }}" method="POST">
                 {{-- {{ route('admin.sponsorships.store') }} --}}
                 @csrf
                 <div id="formAp" class="form-group my-3">
+                    {{-- apartment_id --}}
                     <label class="control-label">Select an apartment:</label>
                     <select name="apartment_id" id="apartment">
                         @foreach ($apartments as $item)
                             <option value="{{ $item->id }}">{{ $item->title }}</option>
                         @endforeach
                     </select>
+                    {{-- sponsor_id --}}
                     <input type="tel" name="sponsorship_price" id="sponsorship_price" value="" readonly>
                 </div>
-                <div class="form-group my-3">
-                    <label class="control-label">Subscription begins on:</label>
-                    <input type="date" id="date_of_start" name="date_of_start" value="date_of_start" readonly>
-                </div>
+                <p>The subscription will start today.</p>
                 <div class="form-group my-3">
                     <button type="submit" class="btn btn-sm btn-success">Subscribe</button>
                 </div>
             </form>
         </div>
 
+        {{-- cards --}}
         <div class="row gap-2 gap-lg-5">
             @foreach ($sponsors as $item)
                 <div class="col-12 col-lg-3 card p-2">
@@ -53,6 +54,7 @@
                 </div>
             @endforeach
         </div>
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -87,7 +89,6 @@
             </div>
         </div>
 
-
     </section>
 
     <script>
@@ -104,35 +105,12 @@
             switch (sponsorshipPrice.value = price) {
                 case 2.99:
                     sponsorshipPrice.value = "Basic";
-                    let input1 = document.createElement("input");
-                    input1.setAttribute("type", "text");
-                    input1.setAttribute("name", "sponsor_id");
-                    input1.setAttribute("id", "sponsor_title");
-                    input1.setAttribute("value", "0");
-                    input1.setAttribute("readonly", "readonly");
-                    formAp.appendChild(input1);
                     break;
-
                 case 5.99:
                     sponsorshipPrice.value = "Advanced";
-                    let input2 = document.createElement("input");
-                    input2.setAttribute("type", "text");
-                    input2.setAttribute("name", "sponsor_id");
-                    input2.setAttribute("id", "sponsor_title");
-                    input2.setAttribute("value", "1");
-                    input2.setAttribute("readonly", "readonly");
-                    formAp.appendChild(input2);
                     break;
-
                 case 9.99:
                     sponsorshipPrice.value = "Premium";
-                    let input3 = document.createElement("input");
-                    input3.setAttribute("type", "text");
-                    input3.setAttribute("name", "sponsor_id");
-                    input3.setAttribute("id", "sponsor_title");
-                    input3.setAttribute("value", "2");
-                    input3.setAttribute("readonly", "readonly");
-                    formAp.appendChild(input3);
                     break;
                 default:
                     break;
@@ -164,13 +142,6 @@
             });
         });
 
-
-
-
-        // date of start column
-        let dateOfStart = document.getElementById("date_of_start").value;
-        let today = new Date().toISOString().substr(0, 10);
-        dateOfStart = today;
 
         // disable buttons on payment success
         // const buttonsToDisable = document.querySelectorAll('.mybtn');
