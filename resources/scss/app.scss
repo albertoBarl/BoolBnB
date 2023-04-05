@@ -1,1 +1,18 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.cdnfonts.com/css/circular-std');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Circular Std', sans-serif;  
+}
+
+.airbnblogo{
+    height: 50px;
+    filter: brightness(300%);
+}
+
+.my_header{
+    background-color: #FF385C;
+}
