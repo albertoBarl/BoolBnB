@@ -32,6 +32,10 @@ footer a{
     text-decoration: none;
 }
 
+th{
+    text-transform: capitalize;
+}
+
 .my_jumbotron{
     background: linear-gradient(0deg, rgba(116, 34, 34, 0.7),rgba(255, 255, 255, 0.3)), url('https://images.unsplash.com/photo-1679542485908-26d7e792ed02?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80');
     background-position: center;
