@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApartmentController as ApartmentController;
+use App\Http\Controllers\Api\ServiceController as ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use App\Http\Controllers\Api\ApartmentController as ApartmentController;
 */
 
 Route::get('/apartments', [ApartmentController::class, 'index']);
+Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
+Route::get('/services', [ServiceController::class, 'index']);
 
 // searchbar
 Route::get('/geocode/{address}', function ($address) {

@@ -105,21 +105,4 @@
     </div>
 </div>
 
-<footer class="row align-items-center my_footercontainer px-5 bg-light mt-5 shadow-sm">
-
-    <!-- <div class="col-9 my_footercolmd">
-        <ul>
-            <li>© 2023 Airbnb, Inc.</li>
-            <li><a href="#">Privacy</a> &#x2022; <a href="#">Termini</a> &#x2022; <a href="#">Mappa del sito</a> &#x2022; <a href="#">Dettagli dell'azienda</a> &#x2022; <a href="#">Destinazioni</a></li>
-        </ul>
-    </div> -->
-
-    <div class="col-9 my_footercollg py-3">
-            © 2023 Airbnb, Inc. &#x2022; <a href="#">Privacy</a> &#x2022; <a href="#">Termini</a> &#x2022; <a href="#">Mappa del sito</a> &#x2022; <a href="#">Dettagli dell'azienda</a> &#x2022; <a href="#">Destinazioni</a>
-    </div>
-
-    <div class="col-3 text-end"> <a class="btn my_footerbtn" role="button" data-bs-toggle="offcanvas" href="#offcanvasFooter" aria-controls="offcanvasFooter">Supporto e risorse <fa icon="angle-up" /></a> </div>
-
-</footer>
-
 @endsection

@@ -5,8 +5,8 @@
             <div class="col-12">
                 <div class="">
                     <h1 class="my-4">{{ $apartment->title }}</h1>
-                    <h2>Contenuto:</h2>
-                    <img src="{{asset('storage/'.$apartment->image)}}" alt="{{$apartment->title}}" class="w-50">
+                    <h2>Copertina:</h2>
+                    <img src="{{ $apartment->image }}" alt="{{$apartment->title}}" class="w-50">
                     <h2>Servizi:</h2>
                         @forelse ($apartment->services as $item)
                             <div>{{ $item->name }}</div>
@@ -26,14 +26,6 @@
                     <p>{{ $apartment->address }}</p>
                     <h2>Coordinate:</h2>
                     <p>{{ $apartment->latitude }} - {{ $apartment->longitude }}</p>
-                    <h2>Prezzo:</h2>
-                    <p>{{ $apartment->price }}</p>
-                    <h2>Cancellazione gratutita:</h2>
-                    @if ($apartment->free_cancellation)
-                        <p>Si</p>
-                    @else
-                        <p>No</p>
-                    @endif
                     <a href="{{ route('admin.apartments.index') }}">Torna all'elenco</a>
                 </div>
             </div>

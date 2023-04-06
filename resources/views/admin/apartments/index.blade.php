@@ -12,7 +12,8 @@
         </div>
     @endif
     <table class="table">
-        <thead>
+
+<thead class="text-capitalize">
             <!-- <th>id</th>
             <th>user id</th> -->
             <th>titolo</th>
@@ -31,15 +32,18 @@
         <tbody>
             @foreach ($apartments as $item)
                 <tr>
+
                     <!-- <td>{{ $item->id }}</td>
                     <td>{{ $item->user_id }}</td> -->
                     <td>{{ $item->title }}</td>
                     <!-- <td>{{ $item->slug }}</td> -->
                     <td class="text-truncate" style="max-width: 150px">{{ $item->description }}</td>
+
                     <td>{{ $item->square_feet }}</td>
                     <td>{{ $item->bathroom }}</td>
                     <td>{{ $item->room }}</td>
                     <td>{{ $item->address }}</td>
+
                     <td class="text-truncate" style="max-width: 150px"> <img :src="{{ $item->image }}" alt="{{ $item->title }}" class="img-fluid"></td>
                     <!-- <td>{{ $item->latitude }} - {{ $item->longitude }}</td> -->
                     <td>{{ $item->price }}</td>
@@ -50,12 +54,15 @@
                                 <i class="fas fa-eye"></i>
                             </a>
                             <a class="btn btn-sm btn-square btn-warning mx-1" href="{{ route('admin.apartments.edit', $item->slug)}}" title="Modifica appartamento">
+
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form method="POST" action="{{ route('admin.apartments.destroy', $item->slug)}}">
+                            <form method="POST" action="{{ route('admin.apartments.destroy', $item->slug) }}">
                                 @csrf
                                 @method('DELETE')
+
                                 <button type="submit" class="btn btn-sm btn-square btn-danger confirm-delete-button mx-1" data-bs-toggle="modal" data-bs-target="#delete-apartment-modal" data-title="{{$item->title}}">
+
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
