@@ -25,22 +25,11 @@
                     <p>{{ $apartment->address }}</p>
                     <h2>Sponsorship:</h2>
                     <p>
-                        @switch($sponsorship)
-                            @case(1)
-                                Basic
-                            @break
-
-                            @case(2)
-                                Advanced
-                            @break
-
-                            @case(2)
-                                Premium
-                            @break
-
-                            @default
-                        @endswitch
-                        , expire at: {{ $sponsorshipEnd }}
+                        @if ($sponsorship)
+                            {{ $sponsorship }}, expire at: {{ $sponsorshipEnd }}
+                        @else
+                            Apartment not sponsorized.
+                        @endif
                     </p>
                     <a href="{{ route('admin.apartments.index') }}">Torna all'elenco</a>
                 </div>

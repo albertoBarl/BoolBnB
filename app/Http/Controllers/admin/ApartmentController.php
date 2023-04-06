@@ -89,8 +89,27 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        $sponsorship = $apartment->sponsors->first()->pivot->sponsor_id;
-        $sponsorshipEnd = $apartment->sponsors->first()->pivot->date_of_end;
+        if ($apartment->sponsors->isNotEmpty()) {
+            $sponsorship = $apartment->sponsors->first()->pivot->sponsor_id;
+            switch ($sponsorship) {
+                case 1:
+                    $sponsorship = "Basic";
+                    break;
+                case 2:
+                    $sponsorship = "Advanced";
+                    break;
+                case 3:
+                    $sponsorship = "Premium";
+                    break;
+
+                default:
+                    break;
+            }
+            $sponsorshipEnd = $apartment->sponsors->first()->pivot->date_of_end;
+        } else {
+            $sponsorship = null;
+            $sponsorshipEnd = null;
+        }
 
         return view('admin.apartments.show', compact('apartment', "sponsorship", "sponsorshipEnd"));
     }
