@@ -1,13 +1,12 @@
-
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 @import "./partials/variable";
-@import url('https://fonts.cdnfonts.com/css/circular-std');
+@import url("https://fonts.cdnfonts.com/css/circular-std");
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Circular Std', sans-serif;  
+    font-family: "Circular Std", sans-serif;
 }
 
 // SPONSOR PAGE
@@ -15,72 +14,63 @@
     .card {
         background-color: $pink-bnb;
         color: white;
-        border: 3px solid black;
+        border: 3px solid $dark-bnb;
         .card-title {
             color: $dark-bnb;
         }
     }
 }
 
-footer a{
-    color: #FF385C;
+footer a {
+    color: $pink-bnb;
     text-decoration: none;
 }
 
-.offcanvas a{
-    color: black;
+.offcanvas a {
+    color: $dark-bnb;
     text-decoration: none;
 }
 
-th{
+th {
     text-transform: capitalize;
 }
 
-.my_jumbotron{
-    background: linear-gradient(0deg, rgba(116, 34, 34, 0.7),rgba(255, 255, 255, 0.3)), url('https://images.unsplash.com/photo-1679542485908-26d7e792ed02?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80');
+.my_jumbotron {
+    background: linear-gradient(
+            0deg,
+            rgba(116, 34, 34, 0.7),
+            rgba(255, 255, 255, 0.3)
+        ),
+        url("https://images.unsplash.com/photo-1679542485908-26d7e792ed02?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80");
     background-position: center;
     background-size: cover;
 }
 
-.airbnblogosm{
+.airbnblogosm {
     height: 100px;
     margin-bottom: 20px;
     filter: brightness(300%);
 }
 
-.airbnblogo{
+.airbnblogo {
     height: 50px;
     filter: brightness(300%);
 }
 
-.my_header{
-    background-color: #FF385C;
+.my_header {
+    background-color: $pink-bnb;
 }
 
-.my_togglerbtn{
-    border: 1px solid #fff;
+.my_togglerbtn {
+    border: 1px solid $light-bnb;
 }
 
-.my_togglerbtnico{
+.my_togglerbtnico {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 @media screen and (min-width: 576px) {
-    
-    .airbnblogo{
+    .airbnblogo {
         margin: 0 auto;
     }
 }
-
-// SPONSOR PAGE
-#sponsor-page {
-    .card {
-        background-color: $pink-bnb;
-        color: white;
-        border: 3px solid black;
-        .card-title {
-            color: $dark-bnb;
-        }
-    }
-}
-
