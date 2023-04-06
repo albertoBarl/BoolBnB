@@ -126,7 +126,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ url('/') }}">{{ __('Home') }}</a>
+                            <a class="nav-link text-white" href="http://localhost:5173/">{{ __('Torna al sito di Airbnb') }}</a>
                         </li>
                     </ul>
 
@@ -170,11 +170,11 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="my_mainmargin">
             @yield('content')
         </main>
 
-        <footer class="row align-items-center my_footercontainer px-5 bg-light mt-5 shadow-sm">
+        <footer class="row align-items-center my_footercontainer px-5 bg-light mt-5 shadow-sm fixed-bottom">
 
             <div class="col-9 my_footercollg py-3">
                     © 2023 Airbnb, Inc. &#x2022; <a href="#">Privacy</a> &#x2022; <a href="#">Termini</a> &#x2022; <a href="#">Mappa del sito</a> &#x2022; <a href="#">Dettagli dell'azienda</a> &#x2022; <a href="#">Destinazioni</a>

@@ -21,8 +21,28 @@
     }
 }
 
-footer a {
-    color: $pink-bnb;
+.my_mainmargin{
+    margin-bottom: 100px;
+}
+
+.my_justify{
+    text-align: justify !important;
+}
+
+.my_servicesli{
+    list-style: none;
+}
+
+.my_servicesli::before {
+    content: "\25E6";
+    color: #FF385C;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+  }
+
+footer a{
+    color: #FF385C;
     text-decoration: none;
 }
 

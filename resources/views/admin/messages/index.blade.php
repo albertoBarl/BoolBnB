@@ -5,7 +5,9 @@
             <div class="col-12 my-5">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h2>Elenco Messaggi</h2>
+                    <h2>
+                        {{ __('Messaggi') }}
+                    </h2>
                     </div>
                     @if($errors->any())
                         <div class="alert alert-danger">
