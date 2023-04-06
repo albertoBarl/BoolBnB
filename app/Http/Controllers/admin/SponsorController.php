@@ -33,8 +33,7 @@ class SponsorController extends Controller
      */
     public function create()
     {
-        $apartments = Apartment::all();
-        return view(compact('apartments'));
+        //
     }
 
     /**
@@ -56,7 +55,7 @@ class SponsorController extends Controller
      */
     public function show(Request $request)
     {
-
+        // datas from index's submit request
         $apSlug = $request->apSlug;
         $sponsor = Sponsor::findOrFail($request->id);
 
@@ -104,8 +103,13 @@ class SponsorController extends Controller
     {
         //
     }
+
     public function payment(Request $request)
     {
+        // datas from submit request
+        $sponsor = Sponsor::findOrFail($request->id);
+        $apartment = Apartment::where('slug', $request->apSlug)->firstOrFail();
+
         //payment w/Braintree
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
@@ -114,11 +118,8 @@ class SponsorController extends Controller
             'privateKey' => config('services.braintree.privateKey')
         ]);
 
-        $sponsor = Sponsor::findOrFail($request->id);
-        $apartment = Apartment::where('slug', $request->apSlug)->firstOrFail();
         $amount = $sponsor->price;
         $nonce = $request["payment_method_nonce"];
-
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,

@@ -2,8 +2,16 @@
 @section('content')
     <section id="sponsor-page" class="container-fluid p-3">
         <h3 class="text-uppercase">payment</h3>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <p>The subscription will start today.</p>
-
         {{-- payment --}}
         <form method="post" id="payment-form"
             action="{{ route('admin.sponsors.payment', ['apSlug' => $apSlug, 'id' => $sponsor->id]) }}">
