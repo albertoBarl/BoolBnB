@@ -133,13 +133,13 @@ class SponsorController extends Controller
             $sponsor->save();
             $nDays = "";
             switch ($request->id) {
-                case '0':
+                case 1:
                     $nDays = 1;
                     break;
-                case '1':
+                case 2:
                     $nDays = 3;
                     break;
-                case '2':
+                case 3:
                     $nDays = 6;
                     break;
                 default:
@@ -148,10 +148,10 @@ class SponsorController extends Controller
 
             function addDaysToDate($dateOfStart, $nDays)
             {
-                $dateOfEnd = date('Y-m-d', strtotime($dateOfStart . ' +' . $nDays . ' days'));
+                $dateOfEnd = date('Y-m-d h:i:s', strtotime($dateOfStart . ' +' . $nDays . ' days'));
                 return $dateOfEnd;
             }
-            $dateOfStart = date("Y-m-d");
+            $dateOfStart = date("Y-m-d h:i:s");
             $dateOfEnd = addDaysToDate($dateOfStart, $nDays);
 
             $apartment->sponsors()->attach($sponsor->id, [
