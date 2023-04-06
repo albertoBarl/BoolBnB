@@ -148,10 +148,10 @@ class SponsorController extends Controller
 
             function addDaysToDate($dateOfStart, $nDays)
             {
-                $dateOfEnd = date('Y-m-d h:i:s', strtotime($dateOfStart . ' +' . $nDays . ' days'));
+                $dateOfEnd = date('Y-m-d H:i:s', strtotime($dateOfStart . ' +' . $nDays . ' days'));
                 return $dateOfEnd;
             }
-            $dateOfStart = date("Y-m-d h:i:s");
+            $dateOfStart = date("Y-m-d H:i:s");
             $dateOfEnd = addDaysToDate($dateOfStart, $nDays);
 
             $apartment->sponsors()->attach($sponsor->id, [
