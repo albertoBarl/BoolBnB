@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="d-flex justify-content-between py-4">
+    <div class="d-flex justify-content-between py-4 mt-5">
         <div>
             <h2>Appartamenti</h2>
         </div>
@@ -19,12 +19,11 @@
         <thead class="text-capitalize">
             <th>titolo</th>
             <th>descrizione</th>
-            <th>metri quadrati</th>
-            <th>bagni</th>
-            <th>camere</th>
+            <th class="my_aptsm my_aptmd">metri quadrati</th>
+            <th class="my_aptsm my_aptmd">bagni</th>
+            <th class="my_aptsm my_aptmd">camere</th>
             <th>indirizzo</th>
             <!-- <th>immagini</th> -->
-            <th>prezzo</th>
             <th>funzioni</th>
         </thead>
         <tbody>
@@ -33,9 +32,9 @@
 
                     <td>{{ $item->title }}</td>
                     <td class="text-truncate" style="max-width: 150px">{{ $item->description }}</td>
-                    <td>{{ $item->square_feet }}</td>
-                    <td>{{ $item->bathroom }}</td>
-                    <td>{{ $item->room }}</td>
+                    <td class="my_aptsm my_aptmd">{{ $item->square_feet }}</td>
+                    <td class="my_aptsm my_aptmd">{{ $item->bathroom }}</td>
+                    <td class="my_aptsm my_aptmd">{{ $item->room }}</td>
                     <td>{{ $item->address }}</td>
 
                     <!-- @if (strpos($item->image, 'post_images') !== false)
@@ -50,9 +49,8 @@
 
                     @endif -->
 
-                    <td>{{ $item->price }}</td>
                     <td>
-                        <div class="d-flex">
+                        <div class="d-flex text-sm-center">
                             <a class="btn btn-sm btn-square btn-primary mx-1"
                                 href="{{ route('admin.apartments.show', $item->slug) }}" title="Visualizza appartamento">
                                 <i class="fas fa-eye"></i>

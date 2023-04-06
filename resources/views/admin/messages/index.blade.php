@@ -3,7 +3,7 @@
     <div class="contaier">
         <div class="row">
             <div class="col-12 my-5">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between px-3">
                     <div>
                     <h2>
                         {{ __('Messaggi') }}
