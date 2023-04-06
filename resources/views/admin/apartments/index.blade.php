@@ -23,7 +23,7 @@
             <th>bagni</th>
             <th>camere</th>
             <th>indirizzo</th>
-            <th>immagini</th>
+            <!-- <th>immagini</th> -->
             <th>prezzo</th>
             <th>funzioni</th>
         </thead>
@@ -37,8 +37,19 @@
                     <td>{{ $item->bathroom }}</td>
                     <td>{{ $item->room }}</td>
                     <td>{{ $item->address }}</td>
-                    <td class="text-truncate" style="max-width: 150px"> <img :src="{{ $item->image }}"
+
+                    <!-- @if (strpos($item->image, 'post_images') !== false)
+
+                    <td class="text-truncate" style="max-width: 150px"> <img :src="`${this.baseUrl}/storage/${$item->image}`"
                             alt="{{ $item->title }}" class="img-fluid"></td>
+
+                    @else
+
+                    <td class="text-truncate" style="max-width: 150px"> <img :src="`${$item->image}`"
+                            alt="{{ $item->title }}" class="img-fluid"></td>
+
+                    @endif -->
+
                     <td>{{ $item->price }}</td>
                     <td>
                         <div class="d-flex">
