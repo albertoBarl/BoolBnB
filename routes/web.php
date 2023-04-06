@@ -41,43 +41,43 @@ Route::middleware(["auth", "verified"])->name("admin.")->prefix("admin")->group(
     ]);
     $token = $gateway->ClientToken()->generate();
 
-    Route::get('/sponsors/{apSlug}', [SponsorController::class, 'index'])->name('sponsors.index');
-    Route::get('/sponsors/{apSlug}/{id}', [SponsorController::class, 'show'])->name('sponsors.show');
-    // Route::post('/sponsors/{apSlug}/{id}/payment', [SponsorController::class, 'processPayment'])->name('sponsors.payment');
+    Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsors.index');
+    Route::get('/sponsors/{id}', [SponsorController::class, 'show'])->name('sponsors.show');
+    Route::post('/sponsors/{id}/{apSlug}/payment', [SponsorController::class, 'payment'])->name('sponsors.payment');
 
     Route::resource('services', ServiceController::class)->parameters(['services' => 'services:slug']);
 });
-Route::post("/checkout", function (Request $request) {
-    $gateway = new Braintree\Gateway([
-        'environment' => config('services.braintree.environment'),
-        'merchantId' => config('services.braintree.merchantId'),
-        'publicKey' => config('services.braintree.publicKey'),
-        'privateKey' => config('services.braintree.privateKey')
-    ]);
+// Route::post("/checkout", function (Request $request) {
+//     $gateway = new Braintree\Gateway([
+//         'environment' => config('services.braintree.environment'),
+//         'merchantId' => config('services.braintree.merchantId'),
+//         'publicKey' => config('services.braintree.publicKey'),
+//         'privateKey' => config('services.braintree.privateKey')
+//     ]);
 
-    $amount = $request["amount"];
-    $nonce = $request["payment_method_nonce"];
+//     $amount = $request["amount"];
+//     $nonce = $request["payment_method_nonce"];
 
-    $result = $gateway->transaction()->sale([
-        'amount' => $amount,
-        'paymentMethodNonce' => $nonce,
-        'options' => [
-            'submitForSettlement' => true
-        ]
-    ]);
+//     $result = $gateway->transaction()->sale([
+//         'amount' => $amount,
+//         'paymentMethodNonce' => $nonce,
+//         'options' => [
+//             'submitForSettlement' => true
+//         ]
+//     ]);
 
-    if ($result->success) {
-        $transaction = $result->transaction;
-        return back()->with("success_message", "Transaction successfull. The ID is:" . $transaction->id);
-    } else {
-        $errorString = "";
+//     if ($result->success) {
+//         $transaction = $result->transaction;
+//         return back()->with("success_message", "Transaction successfull. The ID is:" . $transaction->id);
+//     } else {
+//         $errorString = "";
 
-        foreach ($result->errors->deepAll() as $error) {
-            $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
-        }
-        return back()->withErrors("An error occurred with the message:" . $result->message);
-    }
-});
+//         foreach ($result->errors->deepAll() as $error) {
+//             $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+//         }
+//         return back()->withErrors("An error occurred with the message:" . $result->message);
+//     }
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
