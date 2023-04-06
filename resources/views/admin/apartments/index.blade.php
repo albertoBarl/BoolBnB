@@ -38,16 +38,12 @@
                     <td>{{ $item->address }}</td>
 
                     <!-- @if (strpos($item->image, 'post_images') !== false)
-
-                    <td class="text-truncate" style="max-width: 150px"> <img :src="`${this.baseUrl}/storage/${$item->image}`"
-                            alt="{{ $item->title }}" class="img-fluid"></td>
-
-                    @else
-
-                    <td class="text-truncate" style="max-width: 150px"> <img :src="`${$item->image}`"
-                            alt="{{ $item->title }}" class="img-fluid"></td>
-
-                    @endif -->
+    <td class="text-truncate" style="max-width: 150px"> <img :src="`${this.baseUrl}/storage/${$item->image}`"
+                                alt="{{ $item->title }}" class="img-fluid"></td>
+@else
+    <td class="text-truncate" style="max-width: 150px"> <img :src="`${$item->image}`"
+                                alt="{{ $item->title }}" class="img-fluid"></td>
+    @endif -->
 
                     <td>
                         <div class="d-flex text-sm-center">

@@ -41,10 +41,8 @@ class ApartmentController extends Controller
     {
         // Numero minimo di stanze
         $rooms = $search->rooms;
-
         // Numero minimo di posti letto
         $beds = $search->beds;
-
         // Modificare il raggio di default di 20km
         $range = $search->radius;
         $varRange = '';
@@ -53,7 +51,6 @@ class ApartmentController extends Controller
         } else {
             $varRange = 20000;
         }
-
         // La presenza obbligatoria di uno o più dei servizi aggiuntivi indicati in RF2
         $services = $search->services;
     }

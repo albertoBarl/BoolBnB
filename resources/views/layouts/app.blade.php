@@ -23,98 +23,106 @@
 <body>
     <div id="app">
 
-    <div class="offcanvas offcanvas-bottom h-100" tabindex="-1" id="offcanvasFooter" aria-labelledby="offcanvasFooterLabel">
-        <div class="offcanvas-header">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body small">
-            
-            <div class="container px-5">
+        <div class="offcanvas offcanvas-bottom h-100" tabindex="-1" id="offcanvasFooter"
+            aria-labelledby="offcanvasFooterLabel">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body small">
 
-                <div class="row"><strong>Assistenza</strong></div>
+                <div class="container px-5">
 
-                <div class="row">
+                    <div class="row"><strong>Assistenza</strong></div>
 
-                    <div class="col-4">
-                        <p><a href="#">Centro assistenza</a></p>
-                        <p><a href="#">Opzioni di cancellazione</a></p>
-                    </div>
-                    <div class="col-4">
-                        <p><a href="#">AirCover</a></p>
-                        <p><a href="#">La nostra risposta all'emergenza COVID-19</a></p>
-                    </div>
-                    <div class="col-4">
-                        <p><a href="#">Accessibilità per tutti</a></p>
-                        <p><a href="#">Segnala problemi nel quartiere</a></p>
-                    </div>
-                    
-                </div>
+                    <div class="row">
 
-                <div class="row"><hr></div>
+                        <div class="col-4">
+                            <p><a href="#">Centro assistenza</a></p>
+                            <p><a href="#">Opzioni di cancellazione</a></p>
+                        </div>
+                        <div class="col-4">
+                            <p><a href="#">AirCover</a></p>
+                            <p><a href="#">La nostra risposta all'emergenza COVID-19</a></p>
+                        </div>
+                        <div class="col-4">
+                            <p><a href="#">Accessibilità per tutti</a></p>
+                            <p><a href="#">Segnala problemi nel quartiere</a></p>
+                        </div>
 
-                <div class="row"><strong>Community</strong></div>
-
-                <div class="row">
-
-                    <div class="col-4">
-                        <p><a href="#">Airbnb: un rifugio sicuro</a></p>
-                    </div>
-                    <div class="col-4">
-                        <p><a href="#">Contro la discriminazione</a></p>
-                    </div>
-                    <div class="col-4"></div>
-                    
-                </div>
-
-                <div class="row"><hr></div>
-
-                <div class="row"><strong>Ospitare</strong></div>
-
-                <div class="row">
-
-                    <div class="col-4">
-                        <p><a href="#">Apri un Airbnb</a></p>
-                        <p><a href="#">Vai al forum della community</a></p>
-                    </div>
-                    <div class="col-4">
-                        <p><a href="#">AirCover per gli host</a></p>
-                        <p><a href="#">Come ospitare responsabilmente</a></p>
-                    </div>
-                    <div class="col-4">
-                        <p><a href="#">Esplora le risorse per host</a></p>
-                    </div>
-                    
-                </div>
-
-                <div class="row"><hr></div>
-
-                <div class="row"><strong>Airbnb</strong></div>
-
-                <div class="row">
-
-                    <div class="col-4">
-                        <p><a href="#">Newsroom</a></p>
-                        <p><a href="#">Opportunità di lavoro</a></p>
-                    </div>
-                    <div class="col-4">
-                        <p><a href="#">Scopri le nuove funzionalità</a></p>
-                        <p><a href="#">Investitori</a></p>
-                    </div>
-                    <div class="col-4">
-                        <p><a href="#">Lettera dai nostri fondatori</a></p>
-                        <p><a href="#">Gift card</a></p>
                     </div>
 
+                    <div class="row">
+                        <hr>
+                    </div>
+
+                    <div class="row"><strong>Community</strong></div>
+
+                    <div class="row">
+
+                        <div class="col-4">
+                            <p><a href="#">Airbnb: un rifugio sicuro</a></p>
+                        </div>
+                        <div class="col-4">
+                            <p><a href="#">Contro la discriminazione</a></p>
+                        </div>
+                        <div class="col-4"></div>
+
+                    </div>
+
+                    <div class="row">
+                        <hr>
+                    </div>
+
+                    <div class="row"><strong>Ospitare</strong></div>
+
+                    <div class="row">
+
+                        <div class="col-4">
+                            <p><a href="#">Apri un Airbnb</a></p>
+                            <p><a href="#">Vai al forum della community</a></p>
+                        </div>
+                        <div class="col-4">
+                            <p><a href="#">AirCover per gli host</a></p>
+                            <p><a href="#">Come ospitare responsabilmente</a></p>
+                        </div>
+                        <div class="col-4">
+                            <p><a href="#">Esplora le risorse per host</a></p>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <hr>
+                    </div>
+
+                    <div class="row"><strong>Airbnb</strong></div>
+
+                    <div class="row">
+
+                        <div class="col-4">
+                            <p><a href="#">Newsroom</a></p>
+                            <p><a href="#">Opportunità di lavoro</a></p>
+                        </div>
+                        <div class="col-4">
+                            <p><a href="#">Scopri le nuove funzionalità</a></p>
+                            <p><a href="#">Investitori</a></p>
+                        </div>
+                        <div class="col-4">
+                            <p><a href="#">Lettera dai nostri fondatori</a></p>
+                            <p><a href="#">Gift card</a></p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
         <nav class="navbar navbar-expand-md shadow-sm sticky-top p-2 my_header">
             <div class="container">
                 <a class="navbar-brand col-md-3 col-lg-2 me-0" href="/">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png" alt="airbnb-logo-lg" class="airbnblogo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png"
+                        alt="airbnb-logo-lg" class="airbnblogo">
                 </a>
 
                 <button class="navbar-toggler my_togglerbtn" type="button" data-bs-toggle="collapse"
@@ -127,7 +135,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="http://localhost:5173/">{{ __('Torna al sito di Airbnb') }}</a>
+                            <a class="nav-link text-white"
+                                href="http://localhost:{{ env('VAR_LOCALHOST') }}/">{{ __('Torna al sito di Airbnb') }}</a>
                         </li>
                     </ul>
 
@@ -145,8 +154,9 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -160,7 +170,8 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -178,10 +189,15 @@
         <footer class="row align-items-center my_footercontainer px-5 bg-light mt-5 shadow-sm fixed-bottom">
 
             <div class="col-9 my_footercollg py-3">
-                    © 2023 Airbnb, Inc. &#x2022; <a href="#">Privacy</a> &#x2022; <a href="#">Termini</a> &#x2022; <a href="#">Mappa del sito</a> &#x2022; <a href="#">Dettagli dell'azienda</a> &#x2022; <a href="#">Destinazioni</a>
+                © 2023 Airbnb, Inc. &#x2022; <a href="#">Privacy</a> &#x2022; <a href="#">Termini</a>
+                &#x2022; <a href="#">Mappa del sito</a> &#x2022; <a href="#">Dettagli dell'azienda</a>
+                &#x2022; <a href="#">Destinazioni</a>
             </div>
 
-            <div class="col-3 text-end"> <a class="btn my_footerbtn" role="button" data-bs-toggle="offcanvas" href="#offcanvasFooter" aria-controls="offcanvasFooter">Supporto e risorse <fa icon="angle-up" /></a> </div>
+            <div class="col-3 text-end"> <a class="btn my_footerbtn" role="button" data-bs-toggle="offcanvas"
+                    href="#offcanvasFooter" aria-controls="offcanvasFooter">Supporto e risorse
+                    <fa icon="angle-up" />
+                </a> </div>
 
         </footer>
     </div>
