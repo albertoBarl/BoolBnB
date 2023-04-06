@@ -32,9 +32,15 @@
 
         <header class="navbar sticky-top flex-md-nowrap p-2 shadow-sm my_header">
 
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 ms-3" href="/">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 ms-5" href="/">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1200px-Airbnb_Logo_B%C3%A9lo.svg.png" alt="airbnb-logo-lg" class="airbnblogo">
             </a>
+
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="http://localhost:5173/">{{ __('Torna al sito di Airbnb') }}</a>
+                </li>
+            </ul>
 
             <!-- <input class="form-control form-control-dark w-100" type="text" Placeholder="Search"> -->
             <div class="navbar nav">
