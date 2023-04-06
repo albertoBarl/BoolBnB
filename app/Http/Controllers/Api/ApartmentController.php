@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 
 class ApartmentController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $apartments = Apartment::with('services', 'sponsors')->paginate(8);
         return response()->json([
             'success' => true,
@@ -17,17 +18,17 @@ class ApartmentController extends Controller
         ]);
     }
 
-    public function show($slug){
+    public function show($slug)
+    {
         $apartment = Apartment::with('services', 'sponsors')->where('slug', $slug)->first();
 
-        if($apartment){
+        if ($apartment) {
             return response()->json([
                 'success' => true,
                 'results' => $apartment
-    
+
             ]);
-        }
-        else{
+        } else {
             return response()->json([
                 'success' => false,
                 'error' => 'nessun appartamento trovato'

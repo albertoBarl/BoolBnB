@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Apartment;
 use App\Models\Service;
-use GuzzleHttp\Client;
 
 class ApartmentController extends Controller
 {
@@ -90,7 +89,10 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+        $sponsorship = $apartment->sponsors->first()->pivot->sponsor_id;
+        $sponsorshipEnd = $apartment->sponsors->first()->pivot->date_of_end;
+
+        return view('admin.apartments.show', compact('apartment', "sponsorship", "sponsorshipEnd"));
     }
 
     /**
