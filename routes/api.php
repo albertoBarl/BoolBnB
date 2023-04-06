@@ -28,19 +28,3 @@ Route::get('/services', [ServiceController::class, 'index']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-// Route::get('/geocode/{address}', function ($address) {
-//     $client = new \GuzzleHttp\Client(["verify" => false]);
-//     $response = $client->get('https://api.tomtom.com/search/2/geocode/' . urlencode($address) . '.json', [
-//         'query' => [
-//             'key' => 'B8Rs31GE9jOKMJ7W5iXNK0LjpI3IO5Rl'
-//         ]
-//     ]);
-//     $result = json_decode($response->getBody(), true);
-//     $latitude = $result['results'][0]['position']['lat'];
-//     $longitude = $result['results'][0]['position']['lon'];
-//     return response()->json([
-//         'latitude' => $latitude,
-//         'longitude' => $longitude
-//     ]);
-// });
