@@ -2,28 +2,31 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="">
-                    <h1 class="my-4">{{ $apartment->title }}</h1>
-                    <h2>Copertina:</h2>
-                    <img src="{{ $apartment->image }}" alt="{{ $apartment->title }}" class="w-50">
-                    <h2>Servizi:</h2>
-                    @forelse ($apartment->services as $item)
-                        <div>{{ $item->name }}</div>
-                    @empty
-                        nessuna servizio associato alla locazione
-                    @endforelse
-                    <h2>Contenuto:</h2>
-                    <p>{{ $apartment->content }}</p>
-                    <h2>Metrattura:</h2>
-                    <p>{{ $apartment->square_feet }}</p>
-                    <h2>Numero bagni:</h2>
-                    <p>{{ $apartment->bathroom }}</p>
-                    <h2>Numero stanze:</h2>
-                    <p>{{ $apartment->room }}</p>
-                    <h2>Indirizzo:</h2>
+            <div class="col-12 py-4">
+                <h1>{{ $apartment->title }}</h1>
+                <img src="{{ $apartment->image }}" alt="{{ $apartment->title }}" class="img-fluid me-2">
+                <div class="w-100 w-sm-50">
+                    <h6>Description:</h6>
+                    <p>{{ $apartment->description }}</p>
+                    <h6>Address:</h6>
                     <p>{{ $apartment->address }}</p>
-                    <h2>Sponsorship:</h2>
+                    <h6>Square meters:</h6>
+                    <p>{{ $apartment->square_feet }}&#13217;</p>
+                    <h6>Bathrooms:</h6>
+                    <p>{{ $apartment->bathroom }} @if ($apartment->bathroom > 1)
+                            bathrooms.
+                        @else
+                            bathroom.
+                        @endif
+                    </p>
+                    <h6>Bedrooms:</h6>
+                    <p>{{ $apartment->room }} room with {{ $apartment->bed }} @if ($apartment->bed > 1)
+                            beds.
+                        @else
+                            bed.
+                        @endif
+                    </p>
+                    <h6>Sponsorship:</h6>
                     <p>
                         @if ($sponsorship)
                             {{ $sponsorship }}, expire at: {{ $sponsorshipEnd }}
@@ -31,10 +34,15 @@
                             Apartment not sponsorized.
                         @endif
                     </p>
-                    <a href="{{ route('admin.apartments.index') }}">Torna all'elenco</a>
+                    <h6>Servizi:</h6>
+                    @forelse ($apartment->services as $item)
+                        <div>{{ $item->name }}</div>
+                    @empty
+                        No services founded.
+                    @endforelse
+
                 </div>
-            </div>
-            <div class="col-12">
+                <a href="{{ route('admin.apartments.index') }}">Torna all'elenco</a>
             </div>
         </div>
     </div>
