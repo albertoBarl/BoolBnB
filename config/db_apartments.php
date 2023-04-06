@@ -18,6 +18,8 @@ return
 
                 "room" => "4",
 
+                "bed" => "4",
+
                 "address" => "Via Del Divino Amore, 139 01022 Bagnoregio",
 
                 "image" => "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dmlsbGlub3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
@@ -40,6 +42,8 @@ return
                 "bathroom" => "1",
 
                 "room" => "1",
+
+                "bed" => "2",
 
                 "address" => "Via Aldo Moro, 6, 21010 Ferno VA",
 
@@ -64,6 +68,8 @@ return
 
                 "room" => "1",
 
+                "bed" => "1",
+
                 "address" => "Via Pantano, Milano, MI",
 
                 "image" => "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
@@ -87,7 +93,9 @@ return
 
                 "bathroom" => "3",
 
-                "room" => "2",
+                "room" => "3",
+
+                "bed" => "6",
 
                 "address" => "Via Capo Lilibeo, 3",
 
@@ -111,6 +119,8 @@ return
                 "bathroom" => "3",
 
                 "room" => "2",
+
+                "bed" => "4",
 
                 "address" => "Via Delgi Alisei, 38",
 
@@ -136,6 +146,8 @@ return
 
                 "room" => "2",
 
+                "bed" => "2",
+
                 "address" => "Via S. Maria del Cassero, 31",
 
                 "image" => "https://images.unsplash.com/photo-1610060325112-ebc7efc32a4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2l2aXRhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
@@ -158,6 +170,8 @@ return
                 "bathroom" => "1",
 
                 "room" => "1",
+
+                "bed" => "1",
 
                 "address" => "Via Romanelli, 17 01100 Viterbo VT",
 
@@ -182,6 +196,8 @@ return
 
                 "room" => "2",
 
+                "bed" => "2",
+
                 "address" => "Via Adamello, 11, 38086 Madonna di Campiglio TN",
 
                 "image" => "https://images.unsplash.com/photo-1656531103275-d243a64cf6ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG1hZG9ubmElMjBkaSUyMGNhbXBpZ2xpb3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
@@ -195,6 +211,3 @@ return
 
         ],
     ];
-
-    
-    

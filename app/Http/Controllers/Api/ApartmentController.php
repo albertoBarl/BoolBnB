@@ -35,4 +35,17 @@ class ApartmentController extends Controller
             ]);
         }
     }
+
+    public function search(Request $search)
+    {
+        // Numero minimo di stanze
+        $rooms = $search->rooms;
+
+        // Numero minimo di posti letto
+
+
+        // Modificare il raggio di default di 20km
+        // La presenza obbligatoria di uno o più dei servizi aggiuntivi indicati in RF2
+
+    }
 }
