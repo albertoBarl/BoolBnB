@@ -19,18 +19,11 @@ class SponsorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $gateway = new Braintree\Gateway([
-            'environment' => config('services.braintree.environment'),
-            'merchantId' => config('services.braintree.merchantId'),
-            'publicKey' => config('services.braintree.publicKey'),
-            'privateKey' => config('services.braintree.privateKey')
-        ]);
-        $token = $gateway->ClientToken()->generate();
-        $sponsors = Sponsor::all();
         $apartments = Apartment::all();
-        return view("admin.sponsors.index", compact("sponsors", "apartments", 'token'));
+        $sponsors = Sponsor::all();
+        return view("admin.sponsors.index", compact("sponsors", "apartments"));
     }
 
     /**
@@ -60,9 +53,21 @@ class SponsorController extends Controller
      * @param  \App\Models\Sponsor  $sponsor
      * @return \Illuminate\Http\Response
      */
-    public function show(Sponsor $sponsor)
+    public function show(Request $request)
     {
-        return view("admin.sponsors.show", compact("sponsor"));
+        // datas from index's submit request
+        $apSlug = $request->apSlug;
+        $sponsor = Sponsor::findOrFail($request->id);
+
+        // payments
+        $gateway = new Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+        $token = $gateway->ClientToken()->generate();
+        return view("admin.sponsors.show", compact("token", "sponsor", "apSlug"));
     }
 
     /**
@@ -99,13 +104,69 @@ class SponsorController extends Controller
         //
     }
 
-    // public function subscribe(Request $request)
-    // {
-    //     // $sponsor = new Sponsor();
-    //     // $apartmentId = $request->input("apartment_id");
-    //     // $sponsorId = $request->input('sponsor_id');
-    //     // $dateOfStart = $request->input('date_of_start');
+    public function payment(Request $request)
+    {
+        // datas from submit request
+        $sponsor = Sponsor::findOrFail($request->id);
+        $apartment = Apartment::where('slug', $request->apSlug)->firstOrFail();
 
-    //     // $sponsor->apartments()->attach([$apartmentId, $sponsorId], ['date_of_start' => $dateOfStart]);
-    // }
+        //payment w/Braintree
+        $gateway = new Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+
+        $amount = $sponsor->price;
+        $nonce = $request["payment_method_nonce"];
+        $result = $gateway->transaction()->sale([
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
+
+        if ($result->success) {
+            $transaction = $result->transaction;
+            $sponsor->save();
+            $nDays = "";
+            switch ($request->id) {
+                case 1:
+                    $nDays = 1;
+                    break;
+                case 2:
+                    $nDays = 3;
+                    break;
+                case 3:
+                    $nDays = 6;
+                    break;
+                default:
+                    break;
+            };
+
+            function addDaysToDate($dateOfStart, $nDays)
+            {
+                $dateOfEnd = date('Y-m-d H:i:s', strtotime($dateOfStart . ' +' . $nDays . ' days'));
+                return $dateOfEnd;
+            }
+            $dateOfStart = date("Y-m-d H:i:s");
+            $dateOfEnd = addDaysToDate($dateOfStart, $nDays);
+
+            $apartment->sponsors()->attach($sponsor->id, [
+                'date_of_start' => $dateOfStart,
+                'date_of_end' => $dateOfEnd
+            ]);
+
+            return redirect()->route('admin.sponsors.index')->with('success_message', 'Transaction successful. The ID is:' . $transaction->id);
+        } else {
+            $errorString = "";
+
+            foreach ($result->errors->deepAll() as $error) {
+                $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+            }
+            return back()->withErrors("An error occurred with the message:" . $result->message);
+        }
+    }
 }

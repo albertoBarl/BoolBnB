@@ -13,7 +13,7 @@ class StoreSponsorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
