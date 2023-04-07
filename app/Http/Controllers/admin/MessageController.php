@@ -16,7 +16,7 @@ class MessageController extends Controller
         return view('admin.messages.index', compact('messages'));
     }
 
-//g
+    //g
     public function create()
     {
         return view('admin.messages.create');
@@ -28,16 +28,14 @@ class MessageController extends Controller
 
         $slug = Message::generateSlug($request->name);
 
-        $form_data['slug'] = $slug; 
-        
-        // $form_data['apartment_id'] = auth()->user()->id;
+        $form_data['slug'] = $slug;
 
         $newMessage = new Message();
         $newMessage->fill($form_data);
 
         $newMessage->save();
 
-        return redirect()->route('admin.messages.index')->with('message','Progetto creato correttamente');
+        return redirect()->route('admin.messages.index')->with('message', 'Progetto creato correttamente');
     }
 
     public function show(Message $message)
