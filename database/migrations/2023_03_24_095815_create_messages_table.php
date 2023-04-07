@@ -21,8 +21,6 @@ class CreateMessagesTable extends Migration
             $table->foreign('apartment_id')->references('id')->on('apartments');
             $table->string('email', 128);
             $table->text('content');
-            $table->string('name', 32);
-            $table->string('surname', 32);
             $table->string('slug');
             $table->timestamps();
         });
