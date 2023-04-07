@@ -18,14 +18,14 @@
             <div class="col-sm-12 col-md-12 col-lg-6">
                 <p><strong class="my_pinktext">Servizi:</strong>
                 @forelse ($apartment->services as $item)
-                    <li>{{ $item->name }}</li>
+                    <li class="my_servicesli">{{ $item->name }}</li>
                 @empty
                     nessuna servizio associato alla locazione
                 @endforelse
                 </p>
                 <p class="my_justify"><strong class="my_pinktext">Descrizione:</strong> {{ $apartment->description }}</p>
                 <p><strong class="my_pinktext">Metratura:</strong> {{ $apartment->square_feet }}m&#178;</p>
-                <p><strong class="my_pinktext">Numero stanze:</strong> {{ $apartment->room }}</p>
+                <p><strong class="my_pinktext">Numero stanze:</strong> {{ $apartment->room }}
                 <p><strong class="my_pinktext">Numero letti:</strong> </p>
                 <p><strong class="my_pinktext">Numero bagni:</strong> {{ $apartment->bathroom }}</p>
                 <p><strong class="my_pinktext">Indirizzo:</strong> {{ $apartment->address }}</p>
@@ -44,5 +44,20 @@
                 <a href="{{ route('admin.sponsors.index') }}"><button class="btn my_solidbtn w-100">Sponsorizza la struttura</button></a>
             </div>
         </div>
+
+        <!-- <h6>Bathrooms:</h6>
+            <p>{{ $apartment->bathroom }} @if ($apartment->bathroom > 1)
+                    bathrooms.
+                @else
+                    bathroom.
+                @endif
+            </p>
+        <h6>Bedrooms:</h6>
+            <p>{{ $apartment->room }} room with {{ $apartment->bed }} @if ($apartment->bed > 1)
+                    beds.
+                @else
+                    bed.
+                @endif
+            </p> -->
     </div>
 @endsection
