@@ -5,8 +5,7 @@
             <h2>Appartamenti</h2>
         </div>
         <div>
-            <a href="{{ route('admin.apartments.create') }}" class="btn btn-sm btn-outline-dark">Aggiungi nuovo
-                appartamento</a>
+            <a href="{{ route('admin.apartments.create') }}" class="btn btn-sm my_solidbtn">Aggiungi nuovo appartamento</a>
         </div>
     </div>
     @if (session('message'))

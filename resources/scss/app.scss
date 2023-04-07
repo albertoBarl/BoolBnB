@@ -93,6 +93,36 @@ th {
     display: flex;
 }
 
+.my_borderbtn {
+    color: $pink-bnb;
+    background-color: white;
+    border: 1px solid $pink-bnb;
+    padding: 7px 11px;
+}
+  
+.my_borderbtn:hover {
+    color: white;
+    background-color: $pink-bnb;
+    border: 1px solid $pink-bnb;
+}
+
+.my_solidbtn {
+    color: white;
+    background-color: $pink-bnb;
+    border: 1px solid $pink-bnb;
+    padding: 7px 11px;
+}
+  
+.my_solidbtn:hover {
+    color: $pink-bnb;
+    background-color: white;
+    border: 1px solid $pink-bnb;
+}
+
+.my_pinktext{
+    color: $pink-bnb;
+}
+
 @media screen and (max-width: 992px) {
 
     .my_aptmd{
