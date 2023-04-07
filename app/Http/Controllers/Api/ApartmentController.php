@@ -61,8 +61,52 @@ class ApartmentController extends Controller
         return $coordinates;
     }
 
-    public function inTheRadius()
+    public function inTheRadius($param1, $radius)
     {
+        $apiKey = '98ObIc3GfaoIHmTeR31cHCEP87hLeSmB';
+        // retrieve coordinates
+        $coordinates = $this->isLocated($param1);
+        $apartments = Apartment::all();
+        $apUrlString = "";
+        $nApartments = count($apartments);
+        foreach ($apartments as $key => $apartment) {
+            $latitude = "%7D%2C%22position%22%3A%7B%22lat%22%3A";
+            $longitude = "%2C%22lon%22%3A";
+            if ($key === ($nApartments - 1)) {
+                $apartmentPosition = $latitude . $apartment->latitude . $longitude . $apartment->longitude . "%7D%7D";
+                $apUrlString = $apartmentPosition;
+            } else {
+                $comma = "%2C%"; // ...%2C%
+                $apartmentPosition = $latitude . $apartment->latitude . $longitude . $apartment->longitude . "%7D%7D" . $comma;
+                $apUrlString = $apartmentPosition;
+            }
+        }
+
+        // generalities
+        $endPoRadius = "https://api.tomtom.com/search/2/geometryFilter.json?geometryList=%5B%7B%22type%22%3A%22CIRCLE%22%2C%20%22position%22%3A%22";
+        $constEndPo = "%7D%2C%20%7B%22type%22%3A%22POLYGON%22%2C%20%22vertices%22%3A%5B%2237.7524152343544%2C%20-122.43576049804686%22%2C%20%2237.70660472542312%2C%20-122.43301391601562%22%2C%20%2237.712059855877314%2C%20-122.36434936523438%22%2C%20%2237.75350561243041%2C%20-122.37396240234374%22%5D%7D%5D&poiList=%5B";
+        // ===============================================================================================================
+
+        // final end point
+        $endPoRadiusResults = $endPoRadius . $coordinates[0] . "%2C%20" . $coordinates[1] . "%22%2C%20%22radius%22%3A" . $radius . $constEndPo . $apUrlString . "%5D&key=" . $apiKey;
+
+        // disabling ssl certificate
+        $client = new \GuzzleHttp\Client([
+            "verify" => false
+        ]);
+        $result = $client->get($endPoRadiusResults);
+        $response = json_decode($result->getBody(), true);
+
+        $filteredList = [];
+        foreach ($response["result"] as $location) {
+            $latitude = $location['position']['lat'];
+            $longitude = $location['position']['lon'];
+            // query for filtering by location
+            $filter = Apartment::where("latitude", $latitude)->where("longitude", $longitude)->first();
+
+            array_push($filteredList, $filter);
+        }
+        return $filteredList;
     }
 
     public function search(Request $search)
