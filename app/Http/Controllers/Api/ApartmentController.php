@@ -37,24 +37,7 @@ class ApartmentController extends Controller
         }
     }
 
-    public function search(Request $search)
-    {
-        // Numero minimo di stanze
-        $rooms = $search->rooms;
-        // Numero minimo di posti letto
-        $beds = $search->beds;
-        // Modificare il raggio di default di 20km
-        $range = $search->radius;
-        $varRange = '';
-        if ($range != null) {
-            $varRange = $range * 1000;
-        } else {
-            $varRange = 20000;
-        }
-        // La presenza obbligatoria di uno o più dei servizi aggiuntivi indicati in RF2
-        $services = $search->services;
-    }
-
+    // localizator
     public function isLocated($place)
     {
         $apiKey = '98ObIc3GfaoIHmTeR31cHCEP87hLeSmB';
@@ -76,5 +59,30 @@ class ApartmentController extends Controller
         array_push($coordinates, $lon);
 
         return $coordinates;
+    }
+
+    public function inTheRadius()
+    {
+    }
+
+    public function search(Request $search)
+    {
+        // Numero minimo di stanze
+        $rooms = $search->rooms;
+        // Numero minimo di posti letto
+        $beds = $search->beds;
+        // Modificare il raggio di default di 20km
+        $range = $search->radius;
+        $varRange = '';
+        if ($range != null) {
+            $varRange = $range * 1000;
+        } else {
+            $varRange = 20000;
+        }
+        // La presenza obbligatoria di uno o più dei servizi aggiuntivi indicati in RF2
+        $services = $search->services;
+
+        // array for results of search
+        $filteredList = [];
     }
 }
