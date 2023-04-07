@@ -11,11 +11,18 @@
 
 // SPONSOR PAGE
 #sponsor-page {
-    .card {
+    .my_sponsorcard {
         background-color: $pink-bnb;
         color: white;
-        .card-title {
-            color: $dark-bnb;
+        border: none;
+
+        .my_sponsortitle{
+            color: $pink-bnb;
+            border: none;
+        }
+
+        button:hover{
+            color: $pink-bnb;
         }
     }
 }
