@@ -9,12 +9,23 @@ use App\Http\Controllers\Controller;
 
 class ApartmentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $apartments = Apartment::with('services', 'sponsors')->paginate(8);
+        $position = $request->street;
+        $range = 20000;
+        $filteredList = [];
+        $apCoordinates = $this->isLocated($position);
+        $apOnLocation = $this->inTheRadius($position, $range);
+        foreach ($apOnLocation as $apartment) {
+            array_push($filteredList, $apartment->id);
+        }
+        $apId = Apartment::whereIn('id', $filteredList)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + SIN(RADIANS($apCoordinates[0])) * SIN(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->with('services', "sponsors")->get();
+
+
+        // $apartments = Apartment::with('services', 'sponsors')->paginate(8);
         return response()->json([
             'success' => true,
-            'results' => $apartments
+            'results' => $apId
         ]);
     }
 
@@ -74,11 +85,11 @@ class ApartmentController extends Controller
             $longitude = "%2C%22lon%22%3A";
             if ($key === ($nApartments - 1)) {
                 $apartmentPosition = $latitude . $apartment->latitude . $longitude . $apartment->longitude . "%7D%7D";
-                $apUrlString = $apartmentPosition;
+                $apUrlString = "" . $apartmentPosition;
             } else {
                 $comma = "%2C%"; // ...%2C%
                 $apartmentPosition = $latitude . $apartment->latitude . $longitude . $apartment->longitude . "%7D%7D" . $comma;
-                $apUrlString = $apartmentPosition;
+                $apUrlString = "" . $apartmentPosition;
             }
         }
 
@@ -148,7 +159,7 @@ class ApartmentController extends Controller
                 ->withCount(['services' => function ($query) use ($services) {
                     $query->whereIn('services.id', $services);
                 }])
-                ->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + sin(RADIANS($apCoordinates[0])) * sin(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->get();
+                ->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + SIN(RADIANS($apCoordinates[0])) * SIN(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->get();
             return response()->json([
                 'success' => true,
                 'results' => $apId
