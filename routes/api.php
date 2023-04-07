@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApartmentController as ApartmentController;
 use App\Http\Controllers\Api\ServiceController as ServiceController;
+use App\Http\Controllers\Api\MessageController as MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,11 @@ Route::get("/apartments/search", [ApartmentController::class, "search"]);
 
 // services
 Route::get('/services', [ServiceController::class, 'index']);
+
+// messages
+
+Route::post('/messages', [MessageController::class, 'index']);
+Route::post('/messages', [MessageController::class, 'store']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
