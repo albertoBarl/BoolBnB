@@ -14,36 +14,26 @@
         </div>
     @endif
     <table class="table">
-
         <thead class="text-capitalize">
-            <th>titolo</th>
-            <th>descrizione</th>
-            <th class="my_aptsm my_aptmd">metri quadrati</th>
-            <th class="my_aptsm my_aptmd">bagni</th>
-            <th class="my_aptsm my_aptmd">camere</th>
-            <th>indirizzo</th>
-            <!-- <th>immagini</th> -->
-            <th>funzioni</th>
+            <th>Name</th>
+            <th class="my_aptsm my_aptmd">description</th>
+            <th class="my_aptsm my_aptmd">square meters</th>
+            <th class="my_aptsm my_aptmd">bathrooms</th>
+            <th class="my_aptsm my_aptmd">bedrooms</th>
+            <th>address</th>
+            <th>actions</th>
         </thead>
         <tbody>
             @foreach ($apartments as $item)
                 <tr>
-
                     <td>{{ $item->title }}</td>
-                    <td class="text-truncate" style="max-width: 150px">{{ $item->description }}</td>
+                    <td class="my_aptsm my_aptmd text-truncate" style="max-width: 150px">{{ $item->description }}</td>
                     <td class="my_aptsm my_aptmd">{{ $item->square_feet }}</td>
                     <td class="my_aptsm my_aptmd">{{ $item->bathroom }}</td>
                     <td class="my_aptsm my_aptmd">{{ $item->room }}</td>
                     <td>{{ $item->address }}</td>
 
-                    <!-- @if (strpos($item->image, 'post_images') !== false)
-    <td class="text-truncate" style="max-width: 150px"> <img :src="`${this.baseUrl}/storage/${$item->image}`"
-                                alt="{{ $item->title }}" class="img-fluid"></td>
-@else
-    <td class="text-truncate" style="max-width: 150px"> <img :src="`${$item->image}`"
-                                alt="{{ $item->title }}" class="img-fluid"></td>
-    @endif -->
-
+                    {{-- actions --}}
                     <td>
                         <div class="d-flex text-sm-center">
                             <a class="btn btn-sm btn-square btn-primary mx-1"

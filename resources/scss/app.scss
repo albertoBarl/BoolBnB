@@ -14,35 +14,34 @@
     .card {
         background-color: $pink-bnb;
         color: white;
-        border: 3px solid $dark-bnb;
         .card-title {
             color: $dark-bnb;
         }
     }
 }
 
-.my_mainmargin{
+.my_mainmargin {
     margin-bottom: 100px;
 }
 
-.my_justify{
+.my_justify {
     text-align: justify !important;
 }
 
-.my_servicesli{
+.my_servicesli {
     list-style: none;
 }
 
 .my_servicesli::before {
     content: "\25E6";
-    color: #FF385C;
+    color: #ff385c;
     font-weight: bold;
     display: inline-block;
     width: 1em;
-  }
+}
 
-footer a{
-    color: #FF385C;
+footer a {
+    color: #ff385c;
     text-decoration: none;
 }
 
@@ -89,7 +88,7 @@ th {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
-.my_blocksm{
+.my_blocksm {
     display: flex;
 }
 
@@ -124,19 +123,15 @@ th {
 }
 
 @media screen and (max-width: 992px) {
-
-    .my_aptmd{
+    .my_aptmd {
         display: none;
     }
-
 }
 
 @media screen and (max-width: 768px) {
-
-    .my_aptmd{
+    .my_aptmd {
         display: none;
     }
-
 }
 
 @media screen and (max-width: 576px) {
@@ -144,7 +139,7 @@ th {
         margin: 0 auto;
     }
 
-    .my_aptsm{
+    .my_aptsm {
         display: none;
     }
 }
