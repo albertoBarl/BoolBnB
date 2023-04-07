@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Apartment;
-use App\Models\Sponsor;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
@@ -37,7 +36,7 @@ class ApartmentController extends Controller
         }
     }
 
-    // localizator
+    // localization
     public function isLocated($place)
     {
         $apiKey = '98ObIc3GfaoIHmTeR31cHCEP87hLeSmB';
@@ -61,6 +60,7 @@ class ApartmentController extends Controller
         return $coordinates;
     }
 
+    // radius
     public function inTheRadius($param1, $radius)
     {
         $apiKey = '98ObIc3GfaoIHmTeR31cHCEP87hLeSmB';
@@ -109,6 +109,7 @@ class ApartmentController extends Controller
         return $filteredList;
     }
 
+    // searching
     public function search(Request $search)
     {
         // Numero minimo di stanze
@@ -116,6 +117,7 @@ class ApartmentController extends Controller
         // Numero minimo di posti letto
         $beds = $search->beds;
         // Modificare il raggio di default di 20km
+        $position = $search->street;
         $range = $search->radius;
         $varRange = '';
         if ($range != null) {
@@ -128,5 +130,29 @@ class ApartmentController extends Controller
 
         // array for results of search
         $filteredList = [];
+        $apOnLocation = $this->inTheRadius($position, $varRange);
+        $apCoordinates = $this->isLocated($position);
+        foreach ($apOnLocation as $apartment) {
+            array_push($filteredList, $apartment->id);
+        }
+        if ($services === []) {
+            $apId = Apartment::whereIn('id', $filteredList)->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + SIN(RADIANS($apCoordinates[0])) * SIN(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->get();
+            return response()->json([
+                'success' => true,
+                'results' => $apId
+            ]);
+        } else {
+            $apId = Apartment::whereIn('id', $filteredList)->whereHas('services', function ($query) use ($services) {
+                $query->whereIn('services.id', $services);
+            })
+                ->withCount(['services' => function ($query) use ($services) {
+                    $query->whereIn('services.id', $services);
+                }])
+                ->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + sin(RADIANS($apCoordinates[0])) * sin(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->get();
+            return response()->json([
+                'success' => true,
+                'results' => $apId
+            ]);
+        }
     }
 }
