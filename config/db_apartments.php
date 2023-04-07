@@ -163,7 +163,7 @@ return
 
                 "title" => "Casa Lante",
 
-                "description" => "Lantehouse è un appartamento appena ristrutturato di 35m2 situato al primo piano con ingresso indipendente,che propone uno vista sullo splendido giardino rinascimentale di Villa Lante con ingresso dello stesso a 30m dall'abitazione.",
+                "description" => "Lantehouse è un appartamento appena ristrutturato di 35 metri quadrati situato al primo piano con ingresso indipendente,che propone uno vista sullo splendido giardino rinascimentale di Villa Lante con ingresso dello stesso a 30m dall'abitazione.",
 
                 "square_feet" => "35",
 
@@ -188,7 +188,7 @@ return
 
                 "title" => "Rifugio Lago Nambino",
 
-                "description" => "Lantehouse è un appartamento appena ristrutturato di 35m2 situato al primo piano con ingresso indipendente,che propone uno vista sullo splendido giardino rinascimentale di Villa Lante con ingresso dello stesso a 30m dall'abitazione.",
+                "description" => "Lantehouse è un appartamento appena ristrutturato di 35 metri quadrati situato al primo piano con ingresso indipendente,che propone uno vista sullo splendido giardino rinascimentale di Villa Lante con ingresso dello stesso a 30m dall'abitazione.",
 
                 "square_feet" => "70",
 

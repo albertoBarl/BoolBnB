@@ -10,7 +10,8 @@
         {{-- cards --}}
         <div class="row gap-2 gap-lg-5">
             @foreach ($sponsors as $sponsor)
-                <div class="col-12 col-lg-3 card p-2 d-flex justify-content-center align-items-center">
+                <div class="col-12 col-lg-3 card p-2 d-flex justify-content-center align-items-center
+                ">
                     <h5 class="card-title text-center text-uppercase bg-light form-control">
                         {{ $sponsor->title }}</h5>
                     <p class="card-body"><strong>"Highlights"</strong> your apartment for
