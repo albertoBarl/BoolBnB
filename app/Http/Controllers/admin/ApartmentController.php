@@ -51,7 +51,7 @@ class ApartmentController extends Controller
         // coordinates from address
         $address = $form_data["address"];
         $client = new \GuzzleHttp\Client([
-            "verify" => false
+            "verify" => true
         ]);
         $response = $client->get('https://api.tomtom.com/search/2/geocode/' . urlencode($address) . '.json', [
             'query' => [
