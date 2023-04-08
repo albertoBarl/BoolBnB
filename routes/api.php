@@ -18,13 +18,13 @@ use App\Http\Controllers\Api\ServiceController as ServiceController;
 |
 */
 
-Route::get('/apartments', [ApartmentController::class, 'index']);
+Route::post('/apartments', [ApartmentController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
-Route::get("/apartments/search", [ApartmentController::class, "search"]);
+Route::post("/apartments/search/", [ApartmentController::class, "search"]);
 
 // services
 Route::get('/services', [ServiceController::class, 'index']);
-Route::get('/sponsorship', [ApartmentController::class, 'sponsorship']);
+Route::post('/sponsorship', [ApartmentController::class, 'sponsorship']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

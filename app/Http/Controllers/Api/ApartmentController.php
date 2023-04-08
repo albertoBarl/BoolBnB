@@ -2,31 +2,30 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Sponsor;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 
 class ApartmentController extends Controller
 {
     public function index(Request $request)
     {
-        $position = $request->street;
+        $street = $request->street;
         $range = 20000;
         $filteredList = [];
-        $apCoordinates = $this->isLocated($position);
-        $apOnLocation = $this->inTheRadius($position, $range);
+        $apCoordinates = $this->isLocated($street);
+        $apOnLocation = $this->inTheRadius($street, $range);
         foreach ($apOnLocation as $apartment) {
             array_push($filteredList, $apartment->id);
         }
-        $apId = Apartment::whereIn('id', $filteredList)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + SIN(RADIANS($apCoordinates[0])) * SIN(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->with('services')->get();
+        $apId = Apartment::whereIn('id', $filteredList)->select(['*'])->selectRaw("(6371 * acos(cos(radians($apCoordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($apCoordinates[1])) + sin(radians($apCoordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $range")->with('services')->get();
 
 
         // $apartments = Apartment::with('services', 'sponsors')->paginate(8);
         return response()->json([
             'success' => true,
-            'results' => $apId
+            'indexResults' => $apId
         ]);
     }
 
@@ -37,7 +36,7 @@ class ApartmentController extends Controller
         if ($apartment) {
             return response()->json([
                 'success' => true,
-                'results' => $apartment
+                'showResults' => $apartment
 
             ]);
         } else {
@@ -53,7 +52,7 @@ class ApartmentController extends Controller
         $sponsorship = Apartment::Has('sponsors')->get();
         return response()->json([
             'success' => true,
-            'results' => $sponsorship
+            'sponsorshipResults' => $sponsorship
         ]);
     }
 
@@ -62,16 +61,12 @@ class ApartmentController extends Controller
     {
         $apiKey = '98ObIc3GfaoIHmTeR31cHCEP87hLeSmB';
         $tomtomUrl = 'https://api.tomtom.com/search/2/geocode/';
-        $searchingFilters = '.json?storeResult=false&language=it-IT&view=Unified&key=';
+        $searchingFilters = '.json?storeResult=false&countrySet=IT&language=it-IT&view=Unified&key=';
         $resultUrl = $tomtomUrl . $place . $searchingFilters . $apiKey;
 
         // disabling ssl certificate
-        $client = new \GuzzleHttp\Client([
-            "verify" => false
-        ]);
-        $result = $client->get($resultUrl);
-        $response = json_decode($result->getBody(), true);
-
+        $search = Http::withOptions(['verify' => false])->get($resultUrl);
+        $response = $search->json();
         $lat = $response['results'][0]['position']['lat'];
         $lon = $response['results'][0]['position']['lon'];
         $coordinates = [];
@@ -89,17 +84,15 @@ class ApartmentController extends Controller
         $coordinates = $this->isLocated($param1);
         $apartments = Apartment::all();
         $apUrlString = "";
-        $nApartments = count($apartments);
         foreach ($apartments as $key => $apartment) {
-            $latitude = "%7D%2C%22position%22%3A%7B%22lat%22%3A";
-            $longitude = "%2C%22lon%22%3A";
-            if ($key === ($nApartments - 1)) {
+            $latitude = "%7B%22position%22%3A%7B%22lat%22%3A";
+            $longitude = "2C%22lon%22%3A";
+            if ($key === (count($apartments) - 1)) {
                 $apartmentPosition = $latitude . $apartment->latitude . $longitude . $apartment->longitude . "%7D%7D";
-                $apUrlString = "" . $apartmentPosition;
+                $apUrlString = $apUrlString . $apartmentPosition;
             } else {
-                $comma = "%2C%"; // ...%2C%
-                $apartmentPosition = $latitude . $apartment->latitude . $longitude . $apartment->longitude . "%7D%7D" . $comma;
-                $apUrlString = "" . $apartmentPosition;
+                $apartmentPosition = $latitude . $apartment->latitude . $longitude . $apartment->longitude . "%7D%7D%2C";
+                $apUrlString = $apUrlString . $apartmentPosition;
             }
         }
 
@@ -109,21 +102,17 @@ class ApartmentController extends Controller
         // ===============================================================================================================
 
         // final end point
-        $endPoRadiusResults = $endPoRadius . $coordinates[0] . "%2C%20" . $coordinates[1] . "%22%2C%20%22radius%22%3A" . $radius . $constEndPo . $apUrlString . "%5D&key=" . $apiKey;
+        $endPoRadiusResults = $endPoRadius . $coordinates[0] . "%2C" . $coordinates[1] . "%22%2C%20%22radius%22%3A" . $radius . $constEndPo . $apUrlString . "%5D&key=" . $apiKey;
 
         // disabling ssl certificate
-        $client = new \GuzzleHttp\Client([
-            "verify" => false
-        ]);
-        $result = $client->get($endPoRadiusResults);
-        $response = json_decode($result->getBody(), true);
-
+        $search = Http::withOptions(['verify' => false])->get($endPoRadiusResults);
+        $posFiltered = $search->json();
         $filteredList = [];
-        foreach ($response["result"] as $location) {
+        foreach ($posFiltered["results"] as $location) {
             $latitude = $location['position']['lat'];
             $longitude = $location['position']['lon'];
             // query for filtering by location
-            $filter = Apartment::where("latitude", $latitude)->where("longitude", $longitude)->first();
+            $filter = Apartment::where("longitude", $longitude)->where("latitude", $latitude)->first();
 
             array_push($filteredList, $filter);
         }
@@ -157,10 +146,10 @@ class ApartmentController extends Controller
             array_push($filteredList, $apartment->id);
         }
         if ($services === []) {
-            $apId = Apartment::whereIn('id', $filteredList)->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + SIN(RADIANS($apCoordinates[0])) * SIN(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->get();
+            $apId = Apartment::whereIn('id', $filteredList)->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw("(6371 * acos(cos(radians($apCoordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($apCoordinates[1])) + sin(radians($apCoordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $range")->get();
             return response()->json([
                 'success' => true,
-                'results' => $apId
+                'searchResults' => $apId
             ]);
         } else {
             $apId = Apartment::whereIn('id', $filteredList)->whereHas('services', function ($query) use ($services) {
@@ -169,10 +158,10 @@ class ApartmentController extends Controller
                 ->withCount(['services' => function ($query) use ($services) {
                     $query->whereIn('services.id', $services);
                 }])
-                ->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + SIN(RADIANS($apCoordinates[0])) * SIN(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->get();
+                ->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw("(6371 * acos(cos(radians($apCoordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($apCoordinates[1])) + sin(radians($apCoordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $range")->get();
             return response()->json([
                 'success' => true,
-                'results' => $apId
+                'searchResults' => $apId
             ]);
         }
     }
