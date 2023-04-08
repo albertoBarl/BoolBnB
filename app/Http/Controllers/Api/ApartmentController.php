@@ -16,10 +16,18 @@ class ApartmentController extends Controller
         $arrayIdAps = [];
         $apCoordinates = $this->isLocated($street);
         $apOnLocation = $this->theRadius($street, $radius);
+        $cooLat = $apCoordinates["latitude"];
+        $cooLon = $apCoordinates["longitude"];
         foreach ($apOnLocation as $apartment) {
             array_push($arrayIdAps, $apartment->id);
         }
-        $apId = Apartment::whereIn('id', $arrayIdAps)->select(['*'])->selectRaw("(6371 * acos(cos(radians($apCoordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($apCoordinates[1])) + sin(radians($apCoordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $radius")->with('services')->get();
+
+        $apId = Apartment::whereIn('id', $arrayIdAps)
+            ->select(['*'])
+            ->selectRaw("(6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance", [$cooLat, $cooLon, $cooLat])
+            ->havingRaw("distance < ?", [$radius])
+            ->with('services')
+            ->get();
 
         return response()->json([
             'success' => true,
@@ -54,25 +62,6 @@ class ApartmentController extends Controller
         ]);
     }
 
-    // // localization
-    // public function isLocated($place)
-    // {
-    //     // $apiKey = '98ObIc3GfaoIHmTeR31cHCEP87hLeSmB';
-    //     // $tomtomUrl = 'https://api.tomtom.com/search/2/geocode/';
-    //     // $searchingFilters = '.json?storeResult=false&countrySet=IT&language=it-IT&view=Unified&key=';
-    //     // $resultUrl = $tomtomUrl . $place . $searchingFilters . $apiKey;
-
-    //     // // disabling ssl certificate
-    //     // $search = Http::withOptions(['verify' => false])->get($resultUrl);
-    //     // $response = $search->json();
-    //     // $lat = $response['results'][0]['position']['lat'];
-    //     // $lon = $response['results'][0]['position']['lon'];
-    //     // $coordinates = [];
-    //     // array_push($coordinates, $lat);
-    //     // array_push($coordinates, $lon);
-
-    //     // return $coordinates;
-    // }
     public function isLocated($request)
     {
 
@@ -93,57 +82,10 @@ class ApartmentController extends Controller
             "latitude" => $result['results'][0]['position']['lat'],
             "longitude" => $result['results'][0]['position']['lon'],
         ];
-        // array_push($coordinates, $latitude);
-        // array_push($coordinates, $longitude);
 
-        return response()->json([
-            'success' => true,
-            'locationResults' => $coordinates
-        ]);
+        return  $coordinates;
     }
 
-    // // radius
-    // public function inTheRadius($param1, $radius)
-    // {
-    //     // $apiKey = '98ObIc3GfaoIHmTeR31cHCEP87hLeSmB';
-    //     // // retrieve coordinates
-    //     // $coordinates = $this->isLocated($param1);
-    //     // $apartments = Apartment::all();
-    //     // $apUrlString = "";
-    //     // foreach ($apartments as $key => $apartment) {
-    //     //     $latitude = "%7B%22position%22%3A%7B%22lat%22%3A";
-    //     //     $longitude = "2C%22lon%22%3A";
-    //     //     if ($key === (count($apartments) - 1)) {
-    //     //         $apartmentPosition = $latitude . $apartment->latitude . $longitude . $apartment->longitude . "%7D%7D";
-    //     //         $apUrlString = $apUrlString . $apartmentPosition;
-    //     //     } else {
-    //     //         $apartmentPosition = $latitude . $apartment->latitude . $longitude . $apartment->longitude . "%7D%7D%2C";
-    //     //         $apUrlString = $apUrlString . $apartmentPosition;
-    //     //     }
-    //     // }
-
-    //     // // generalities
-    //     // $endPoRadius = "https://api.tomtom.com/search/2/geometryFilter.json?geometryList=%5B%7B%22type%22%3A%22CIRCLE%22%2C%20%22position%22%3A%22";
-    //     // $constEndPo = "%7D%2C%20%7B%22type%22%3A%22POLYGON%22%2C%20%22vertices%22%3A%5B%2237.7524152343544%2C%20-122.43576049804686%22%2C%20%2237.70660472542312%2C%20-122.43301391601562%22%2C%20%2237.712059855877314%2C%20-122.36434936523438%22%2C%20%2237.75350561243041%2C%20-122.37396240234374%22%5D%7D%5D&poiList=%5B";
-    //     // // ===============================================================================================================
-
-    //     // // final end point
-    //     // $endPoRadiusResults = $endPoRadius . $coordinates[0] . "%2C" . $coordinates[1] . "%22%2C%20%22radius%22%3A" . $radius . $constEndPo . $apUrlString . "%5D&key=" . $apiKey;
-
-    //     // // disabling ssl certificate
-    //     // $search = Http::withOptions(['verify' => false])->get($endPoRadiusResults);
-    //     // $posFiltered = $search->json();
-    //     // $arraIdAps = [];
-    //     // foreach ($posFiltered["results"] as $location) {
-    //     //     $latitude = $location['position']['lat'];
-    //     //     $longitude = $location['position']['lon'];
-    //     //     // query for filtering by location
-    //     //     $filter = Apartment::where("longitude", $longitude)->where("latitude", $latitude)->first();
-
-    //     //     array_push($arraIdAps, $filter);
-    //     // }
-    //     // return $filteredList;
-    // }
     public function theRadius($request, $radius)
     {
         $coordinates = $this->isLocated($request);
@@ -157,7 +99,7 @@ class ApartmentController extends Controller
         $geometryList = [
             [
                 "type" => "CIRCLE",
-                "position" => "$coordinates[0], $coordinates[1]",
+                "position" => "{$coordinates["latitude"]}, {$coordinates["longitude"]}",
                 "radius" => $radius
             ]
         ];
@@ -198,6 +140,30 @@ class ApartmentController extends Controller
         return $filteredList;
     }
 
+    public function searchBy(Request $request)
+    {
+        $street = $request->street;
+        $radius = $request->radius;
+        $varRadius = "";
+        if ($radius != null) {
+            $varRadius = $radius * 1000;
+        } else {
+            $varRadius = 20000;
+        };
+
+        $arrayIdAps = [];
+        $apsNearFinded = $this->theRadius($street, $radius);
+        $coordinates = $this->isLocated($street);
+        foreach ($apsNearFinded as $apartment) {
+            array_push($arrayIdAps, $apartment->id);
+        }
+        // if ($services === []) {
+        //     # code...
+        // } else {
+        //     # code...
+        // }
+
+    }
     // // searching
     // public function search(Request $search)
     // {
@@ -244,28 +210,4 @@ class ApartmentController extends Controller
     //     //     ]);
     //     // }
     // }
-    public function searchBy(Request $request)
-    {
-        $street = $request->street;
-        $radius = $request->radius;
-        $varRadius = "";
-        if ($radius != null) {
-            $varRadius = $radius * 1000;
-        } else {
-            $varRadius = 20000;
-        };
-
-        $arrayIdAps = [];
-        $apsNearFinded = $this->theRadius($street, $radius);
-        $coordinates = $this->isLocated($street);
-        foreach ($apsNearFinded as $apartment) {
-            array_push($arrayIdAps, $apartment->id);
-        }
-        // if ($services === []) {
-        //     # code...
-        // } else {
-        //     # code...
-        // }
-
-    }
 }
