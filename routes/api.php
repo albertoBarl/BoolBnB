@@ -18,8 +18,6 @@ use App\Http\Controllers\Api\ServiceController as ServiceController;
 |
 */
 
-Route::get('/testApi', [ApartmentController::class, 'isLocated']);
-
 Route::get('/apartments', [ApartmentController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
 Route::get("/apartments/search/", [ApartmentController::class, "search"]);
