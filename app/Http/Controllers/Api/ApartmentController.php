@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Sponsor;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -19,7 +20,7 @@ class ApartmentController extends Controller
         foreach ($apOnLocation as $apartment) {
             array_push($filteredList, $apartment->id);
         }
-        $apId = Apartment::whereIn('id', $filteredList)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + SIN(RADIANS($apCoordinates[0])) * SIN(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->with('services', "sponsors")->get();
+        $apId = Apartment::whereIn('id', $filteredList)->select(['*'])->selectRaw("(6371 * ACOS(COS(RADIANS($apCoordinates[0])) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS($apCoordinates[1])) + SIN(RADIANS($apCoordinates[0])) * SIN(RADIANS(latitude)))) AS distance")->havingRaw("distance < $range")->with('services')->get();
 
 
         // $apartments = Apartment::with('services', 'sponsors')->paginate(8);
@@ -45,6 +46,15 @@ class ApartmentController extends Controller
                 'error' => 'nessun appartamento trovato'
             ]);
         }
+    }
+
+    public function sponsorship()
+    {
+        $sponsorship = Apartment::Has('sponsors')->get();
+        return response()->json([
+            'success' => true,
+            'results' => $sponsorship
+        ]);
     }
 
     // localization

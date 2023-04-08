@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Client;
 use App\Http\Controllers\Api\ApartmentController as ApartmentController;
 use App\Http\Controllers\Api\ServiceController as ServiceController;
 
@@ -23,6 +24,7 @@ Route::get("/apartments/search", [ApartmentController::class, "search"]);
 
 // services
 Route::get('/services', [ServiceController::class, 'index']);
+Route::get('/sponsorship', [ApartmentController::class, 'sponsorship']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
