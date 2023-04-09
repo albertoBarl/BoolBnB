@@ -4,7 +4,7 @@
 
         <div class="row">
             <div class="col-12 mt-5">
-                <a href="{{ route('admin.messages.index') }}" class="btn btn-primary">Torna all'elenco</a>
+                <a href="{{ route('admin.messages.index') }}"><button class="btn mb-4 my_borderbtn"> Torna all'elenco <i class="fa-solid fa-reply" class="ms-1"></i></button></a>
             </div>
             
             <div class="col-md-7 col-sm-12 mt-5 my_justify">

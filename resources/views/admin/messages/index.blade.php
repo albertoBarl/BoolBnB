@@ -19,7 +19,7 @@
                         </div>
                     @endif
                     <div>
-                        <a href="{{ route('admin.messages.create')}}" class="btn btn-sm btn-danger">Aggiungi Messaggi</a>
+                        <a href="{{ route('admin.messages.create')}}" class="btn btn-sm my_solidbtn">Aggiungi Messaggi</a>
                     </div>
                 </div>
             </div>

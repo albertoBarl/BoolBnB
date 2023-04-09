@@ -34,6 +34,7 @@ class CreateViewsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('views');
     }
 }

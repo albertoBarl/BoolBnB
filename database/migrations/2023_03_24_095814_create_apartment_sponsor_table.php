@@ -35,6 +35,7 @@ class CreateApartmentSponsorTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('apartment_sponsor');
     }
 }

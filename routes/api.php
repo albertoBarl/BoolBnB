@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
 use App\Http\Controllers\Api\ApartmentController as ApartmentController;
 use App\Http\Controllers\Api\ServiceController as ServiceController;
+use App\Http\Controllers\Api\MessageController as MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\Api\ServiceController as ServiceController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 // services
 Route::get('/services', [ServiceController::class, 'index']);
 
@@ -30,6 +32,10 @@ Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
 // filter by range, rooms exc.
 Route::get("/apartments/search/{model}", [ApartmentController::class, "search"]);
 
+
+// messages
+Route::post('/messages', [MessageController::class, 'index']);
+Route::post('/messages', [MessageController::class, 'store']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
