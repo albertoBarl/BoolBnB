@@ -88,7 +88,9 @@ class ApartmentController extends Controller
 
     public function theRadius($request, $radius)
     {
-        $coordinates = $this->isLocated($request);
+        $apCoordinates = $this->isLocated($request);
+        $cooLat = $apCoordinates["latitude"];
+        $cooLon = $apCoordinates["longitude"];
         $apiKey = 'B8Rs31GE9jOKMJ7W5iXNK0LjpI3IO5Rl';
         $radiusUrl = "https://api.tomtom.com/search/2/geometryFilter";
 
@@ -99,7 +101,7 @@ class ApartmentController extends Controller
         $geometryList = [
             [
                 "type" => "CIRCLE",
-                "position" => "{$coordinates["latitude"]}, {$coordinates["longitude"]}",
+                "position" => "{$cooLat}, {$cooLon}",
                 "radius" => $radius
             ]
         ];
@@ -142,6 +144,9 @@ class ApartmentController extends Controller
 
     public function searchBy(Request $request)
     {
+        $rooms = $request->rooms;
+        $beds = $request->beds;
+        $services = $request->services;
         $street = $request->street;
         $radius = $request->radius;
         $varRadius = "";
@@ -152,62 +157,46 @@ class ApartmentController extends Controller
         };
 
         $arrayIdAps = [];
-        $apsNearFinded = $this->theRadius($street, $radius);
-        $coordinates = $this->isLocated($street);
+        $apsNearFinded = $this->theRadius($street, $varRadius);
+        $apCoordinates = $this->isLocated($street);
+        $cooLat = $apCoordinates["latitude"];
+        $cooLon = $apCoordinates["longitude"];
+
         foreach ($apsNearFinded as $apartment) {
             array_push($arrayIdAps, $apartment->id);
         }
-        // if ($services === []) {
-        //     # code...
-        // } else {
-        //     # code...
-        // }
+        if ($services === []) {
+            $apId = Apartment::whereIn('id', $apsNearFinded)
+                ->where('rooms', '>=', $rooms)
+                ->where('beds', '>=', $beds)
+                ->select(['*'])
+                ->selectRaw("(6371 * acos(cos(radians($cooLat)) * cos(radians(latitude)) * cos(radians(longitude) - radians($cooLon)) + sin(radians($cooLat)) * sin(radians(latitude)))) AS distance")
+                ->havingRaw("distance < $varRadius")
+                ->get();
+            return response()->json([
+                'success' => true,
+                'searchByResults' => $apId
+            ]);
+        } else {
+            $apId = Apartment::whereIn('id', $apsNearFinded)
+                ->whereHas('services', function ($apS) use ($services) {
+                    $apS->whereIn('services.id', $services);
+                })
+                ->withCount(['services' => function ($apS) use ($services) {
+                    $apS->whereIn('services.id', $services);
+                }])
+                ->where('rooms', '>=', $rooms)
+                ->where('beds', '>=', $beds)
+                ->select(['*'])
+                ->selectRaw("(6371 * acos(cos(radians($cooLat)) * cos(radians(latitude)) * cos(radians(longitude) - radians($cooLon)) + sin(radians($cooLat)) * sin(radians(latitude)))) AS distance")
+                ->havingRaw("distance < $varRadius")
+                ->orderBy('distance')
+                ->get();
 
+            return response()->json([
+                'success' => true,
+                'searchByResults' => $apId
+            ]);
+        }
     }
-    // // searching
-    // public function search(Request $search)
-    // {
-    //     // // Numero minimo di stanze
-    //     // $rooms = $search->rooms;
-    //     // // Numero minimo di posti letto
-    //     // $beds = $search->beds;
-    //     // // Modificare il raggio di default di 20km
-    //     // $position = $search->street;
-    //     // $range = $search->radius;
-    //     // $varRange = '';
-    //     // if ($range != null) {
-    //     //     $varRange = $range * 1000;
-    //     // } else {
-    //     //     $varRange = 20000;
-    //     // }
-    //     // // La presenza obbligatoria di uno o più dei servizi aggiuntivi indicati in RF2
-    //     // $services = $search->services;
-
-    //     // // array for results of search
-    //     // $filteredList = [];
-    //     // $apOnLocation = $this->inTheRadius($position, $varRange);
-    //     // $apCoordinates = $this->isLocated($position);
-    //     // foreach ($apOnLocation as $apartment) {
-    //     //     array_push($filteredList, $apartment->id);
-    //     // }
-    //     // if ($services === []) {
-    //     //     $apId = Apartment::whereIn('id', $filteredList)->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw('(6371 * acos(cos(radians($apCoordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($apCoordinates[1])) + sin(radians($apCoordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $range")->get();
-    //     //     return response()->json([
-    //     //         'success' => true,
-    //     //         'searchResults' => $apId
-    //     //     ]);
-    //     // } else {
-    //     //     $apId = Apartment::whereIn('id', $filteredList)->whereHas('services', function ($query) use ($services) {
-    //     //         $query->whereIn('services.id', $services);
-    //     //     })
-    //     //         ->withCount(['services' => function ($query) use ($services) {
-    //     //             $query->whereIn('services.id', $services);
-    //     //         }])
-    //     //         ->where('rooms', '>=', $rooms)->where('beds', '>=', $beds)->select(['*'])->selectRaw("(6371 * acos(cos(radians($apCoordinates[0])) * cos(radians(latitude)) * cos(radians(longitude) - radians($apCoordinates[1])) + sin(radians($apCoordinates[0])) * sin(radians(latitude)))) AS distance")->havingRaw("distance < $range")->get();
-    //     //     return response()->json([
-    //     //         'success' => true,
-    //     //         'searchResults' => $apId
-    //     //     ]);
-    //     // }
-    // }
 }
