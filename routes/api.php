@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Client;
 use App\Http\Controllers\Api\ApartmentController as ApartmentController;
 use App\Http\Controllers\Api\ServiceController as ServiceController;
 use App\Http\Controllers\Api\MessageController as MessageController;
@@ -18,15 +19,21 @@ use App\Http\Controllers\Api\MessageController as MessageController;
 |
 */
 
-Route::get('/apartments', [ApartmentController::class, 'index']);
-Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
-Route::get("/apartments/search", [ApartmentController::class, "search"]);
-
 // services
 Route::get('/services', [ServiceController::class, 'index']);
 
-// messages
+// apartments in evidence
+Route::get('/sponsorship', [ApartmentController::class, 'sponsorship']);
 
+// apartments trough location filter
+Route::get('/apartments', [ApartmentController::class, 'index']);
+// single apartment details
+Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
+// filter by range, rooms exc.
+Route::get("/apartments/search/{model}", [ApartmentController::class, "search"]);
+
+
+// messages
 Route::post('/messages', [MessageController::class, 'index']);
 Route::post('/messages', [MessageController::class, 'store']);
 
