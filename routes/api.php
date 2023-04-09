@@ -30,7 +30,7 @@ Route::get('/apartments', [ApartmentController::class, 'index']);
 // single apartment details
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
 // filter by range, rooms exc.
-Route::get("/apartments/search/{model}", [ApartmentController::class, "search"]);
+Route::get("/apartments/search/", [ApartmentController::class, "search"]);
 
 
 // messages
