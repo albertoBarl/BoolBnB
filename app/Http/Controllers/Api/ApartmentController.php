@@ -68,7 +68,7 @@ class ApartmentController extends Controller
         $apiKey = "B8Rs31GE9jOKMJ7W5iXNK0LjpI3IO5Rl";
         $firstHalf = "https://api.tomtom.com/search/2/geocode/";
         $client = new \GuzzleHttp\Client([
-            "verify" => true
+            "verify" => false
         ]);
         $response = $client->get($firstHalf . urlencode($request) . '.json', [
             'query' => [
@@ -96,7 +96,7 @@ class ApartmentController extends Controller
 
         $apartments = Apartment::all();
         $client = new \GuzzleHttp\Client([
-            "verify" => true
+            "verify" => false
         ]);
         $geometryList = [
             [
