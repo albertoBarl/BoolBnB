@@ -45,6 +45,13 @@
                     @endif
                 </div>
                 <div class="form-group my-3">
+                    <label class="control-label">n. Posti letto</label>
+                    <input type="number" class="form-control" placeholder="Numero posti letto" id="bed" name="bed" value="{{ old('bed') ?? $apartment->bed }}">
+                    @if ($errors->has('room'))
+                    <div class="text-danger">{{ $errors->first('room') }}</div>
+                    @endif
+                </div>
+                <div class="form-group my-3">
                     <label class="control-label">Indirizzo</label>
                     <input type="text" class="form-control" placeholder="Indirizzo" id="address" name="address" value="{{ old('address') ?? $apartment->address }}">
                     @if ($errors->has('address'))

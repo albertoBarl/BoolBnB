@@ -70,6 +70,17 @@
                     </div>
                 </div>
                 <div class="form-group my-3">
+                    <label class="control-label">n. Posti letto</label>
+                    <input type="number" class="form-control" placeholder="Numero posti letto" id="bed" name="bed"
+                        required>
+                    <div class="valid-feedback">
+                        il numero di posti letto è valido!
+                    </div>
+                    <div class="invalid-feedback">
+                        il numero di posti letto inserite non è valido!
+                    </div>
+                </div>
+                <div class="form-group my-3">
                     <label class="control-label">Indirizzo</label>
                     <input type="text" class="form-control" placeholder="Indirizzo" id="address" name="address"
                         required>
