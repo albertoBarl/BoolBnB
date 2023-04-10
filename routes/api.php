@@ -24,6 +24,7 @@ Route::get('/services', [ServiceController::class, 'index']);
 
 // apartments in evidence
 Route::get('/sponsorship', [ApartmentController::class, 'sponsorship']);
+Route::get('/allaps', [ApartmentController::class, 'allaps']);
 
 // apartments trough location filter
 Route::get('/apartments', [ApartmentController::class, 'index']);

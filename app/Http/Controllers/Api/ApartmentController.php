@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Http;
 
 class ApartmentController extends Controller
 {
+    public function allaps()
+    {
+        $apartments = Apartment::all();
+        return response()->json([
+            'success' => true,
+            'allApsResults' => $apartments
+        ]);
+    }
+
     public function index(Request $request)
     {
         $street = $request->street;
