@@ -10,7 +10,12 @@
             <div class="col-12">
                 <div class="">
                     <h1 class="my-4">{{ $apartment->title }}</h1>
-                    <img src="{{ $apartment->image }}" alt="{{ $apartment->title }}" class="w-lg-50 w-md-100 w-sm-100 rounded">
+                    @if (Str::contains($apartment->image, 'post_images'))
+                    <img src="{{asset('storage/' .$apartment->image)}}" alt="">
+                    @else
+                    <img class="card-img-top my_cardimg rounded" src="{{ $apartment->image }}" alt="">
+                    @endif
+
                 </div>
             </div>
         </div>
