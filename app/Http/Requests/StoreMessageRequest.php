@@ -24,8 +24,6 @@ class StoreMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'surname' => ['required'],
             'email' => ['required'],
             'content' => ['required'],
             'apartment_id' => ['required'],
@@ -35,8 +33,6 @@ class StoreMessageRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Il nome è richiesto',
-            'surname.required' => 'Il cognome è richiesto',
             'email.required' => 'L\'email è richiesta',
             'content.required' => 'Il contenuto è richiesto',
             'apartment_id.required' => 'L\'id apartment è richiesto',
