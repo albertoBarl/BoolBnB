@@ -96,16 +96,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="form-group my-3">
-                    <label class="control-label">Prezzo</label>
-                    <input type="number" class="form-control" placeholder="Prezzo" id="price" name="price" required>
-                    <div class="valid-feedback">
-                        prezzo valida!
-                    </div>
-                    <div class="invalid-feedback">
-                        i metri quadri inseriti non sono corretto!
-                    </div>
-                </div>
+
                 <div class="form-group my-3">
                     <label class="control-label">Servizi</label>
                     @foreach ($services as $service)

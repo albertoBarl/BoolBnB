@@ -55,7 +55,7 @@ class ApartmentController extends Controller
         ]);
         $response = $client->get('https://api.tomtom.com/search/2/geocode/' . urlencode($address) . '.json', [
             'query' => [
-                'key' => 'B8Rs31GE9jOKMJ7W5iXNK0LjpI3IO5Rl'
+                'key' => 'MYWgMG9kDFQDLg79CP4I0LkOdQCPItNn'
             ]
         ]);
         $result = json_decode($response->getBody(), true);
