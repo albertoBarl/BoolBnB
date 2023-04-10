@@ -18,22 +18,19 @@
                             </ul>
                         </div>
                     @endif
-                    <div>
-                        <a href="{{ route('admin.messages.create')}}" class="btn btn-sm my_solidbtn">Aggiungi Messaggi</a>
-                    </div>
                 </div>
             </div>
             <div class="col-12 flex-wrap" >
                         @foreach ($messages as $msg)
                             <div class="card m-3 p-3">
-                                <div><strong>Da:</strong> {{$msg->name}} {{$msg->surname}} - {{$msg->email}}</div>
+                                <div><strong>Da:</strong> {{$msg->email}} - {{ $msg->apartment_title }}</div>
                                 <div><strong>Messaggio:</strong> {{$msg->content}}</div>
                                 <div class="d-flex">
-                                <div class="mt-2">
+                                {{-- <div class="mt-2">
                                     <a href="{{ route('admin.messages.show', $msg->slug)}}" title="Visualizza Progetto" class="btn btn-primary btn-sm btn-square">
                                             <i class="fas fa-eye"></i>
                                     </a>
-                                </div>
+                                </div> --}}
                                 </div>
                             </div>
                         @endforeach
