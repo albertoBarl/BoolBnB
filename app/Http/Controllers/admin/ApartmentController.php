@@ -51,7 +51,7 @@ class ApartmentController extends Controller
         // coordinates from address
         $address = $form_data["address"];
         $client = new \GuzzleHttp\Client([
-            "verify" => true
+            "verify" => false
         ]);
         $response = $client->get('https://api.tomtom.com/search/2/geocode/' . urlencode($address) . '.json', [
             'query' => [
@@ -145,7 +145,7 @@ class ApartmentController extends Controller
             if ($apartment->image) {
                 Storage::delete($apartment->image);
             }
-            $path = Storage::disk('public')->put('a$apartment_images', $request->image);
+            $path = Storage::disk('public')->put('post_images', $request->image);
 
             $form_data['image'] = $path;
         }
