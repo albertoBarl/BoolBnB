@@ -19,6 +19,7 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments');
+            $table->text('apartment_title')->references('title')->on('apartments');
             $table->string('email', 128);
             $table->text('content');
             $table->string('slug');
