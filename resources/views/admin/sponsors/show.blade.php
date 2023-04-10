@@ -19,9 +19,8 @@
             <section>
                 <label for="amount">
                     <span class="input-label">Price:</span>
-                    <div class="input-wrapper amount-wrapper form-control border-dark">
-                        <input id="amount" name="amount" type="tel" min="1" placeholder="Amount"
-                            value="{{ $sponsor->price }}" readonly class="border-0">
+                    <div>
+                        <div id="amount" class="border-0" readonly>{{ $sponsor->price }} $</div>
                     </div>
                 </label>
                 <div class="bt-drop-in-wrapper d-flex justify-content-start">
