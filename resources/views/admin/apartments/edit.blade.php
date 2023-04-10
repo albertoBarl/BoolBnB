@@ -78,13 +78,6 @@
                     @endif
                     </div>
                     <div class="form-group my-3">
-                        <label class="control-label">Prezzo</label>
-                        <input type="number" class="form-control" placeholder="Prezzo" id="price" name="price" value="{{ old('price') ?? $apartment->price }}">
-                        @if ($errors->has('price'))
-                    <div class="text-danger">{{ $errors->first('price') }}</div>
-                    @endif
-                    </div>
-                    <div class="form-group my-3">
                         <label class="control-label">Servizi</label>
                         @foreach ($services as $service)
                             <div>

@@ -28,7 +28,6 @@ return
 
                 "longitude" => "12.08030",
 
-                "price" => "150",
             ],
             [
                 "user_id" => "1",
@@ -53,7 +52,6 @@ return
 
                 "longitude" => "8.758279",
 
-                "price" => "65",
             ],
             [
                 "user_id" => "1",
@@ -78,7 +76,6 @@ return
 
                 "longitude" => "9.191767",
 
-                "price" => "145",
             ],
             [
                 "user_id" => "1",
@@ -105,7 +102,6 @@ return
 
                 "longitude" => "13.619930",
 
-                "price" => "350",
             ],
             [
                 "user_id" => "1",
@@ -130,7 +126,6 @@ return
 
                 "longitude" => "13.620661",
 
-                "price" => "350",
             ],
             [
                 "user_id" => "1",
@@ -156,7 +151,6 @@ return
 
                 "longitude" => "12.113317",
 
-                "price" => "200",
             ],
             [
                 "user_id" => "1",
@@ -181,7 +175,6 @@ return
 
                 "longitude" => "12.105288",
 
-                "price" => "50",
             ],
             [
                 "user_id" => "1",
@@ -206,7 +199,6 @@ return
 
                 "longitude" => "10.800372",
 
-                "price" => "150",
             ],
 
         ],

@@ -34,7 +34,6 @@ class StoreApartmentRequest extends FormRequest
             // 'latitude' => ['required'],
             // 'longitude' => ['required'],
             // commentati così da permettere allo store di registrare le coordinate dall'input indirizzo
-            'price' => ['required'],
 
             'services' => ['exists:services,id'],
 
@@ -53,7 +52,6 @@ class StoreApartmentRequest extends FormRequest
             'image.required' => 'Almeno un immagine è richiesta.',
             'latitude.required' => 'La latitudine è richiesta.',
             'longitude.required' => 'La longitudine è richiesta.',
-            'price.required' => 'Il prezzo è richiesto.',
             'image.image' => 'Inserire un formato di immagine valido.',
         ];
     }

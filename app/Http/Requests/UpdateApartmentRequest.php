@@ -34,7 +34,6 @@ class UpdateApartmentRequest extends FormRequest
             'image' => ['nullable', 'image'],
             'latitude' => ['required'],
             'longitude' => ['required'],
-            'price' => ['required'],
 
             'services' => ['exists:services,id'],
 
@@ -53,7 +52,6 @@ class UpdateApartmentRequest extends FormRequest
             'image.required' => 'Inserire almeno un\' immagine valida.',
             'latitude.required' => 'La latitudine non può essere nulla.',
             'longitude.required' => 'La longitudine non può essere nulla.',
-            'price.required' => 'Il prezzo non può essere nullo.',
             'image.image' => 'Inserire un formato di immagine valido.',
         ];
     }
