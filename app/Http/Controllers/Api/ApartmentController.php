@@ -144,18 +144,17 @@ class ApartmentController extends Controller
 
     public function searchBy(Request $request)
     {
-        $rooms = $request->rooms;
-        $beds = $request->beds;
-        $services = $request->services;
-        $street = $request->street;
-        $radius = $request->radius;
+        $rooms = $request->has('rooms') ? $request->input('rooms') : null;
+        $beds = $request->has('beds') ? $request->input('beds') : null;
+        $services = $request->has('services') ? $request->input('services') : null;
+        $street = $request->has('street') ? $request->street : null;
+        $radius = $request->has('radius') ? $request->input('radius') : null;
         $varRadius = "";
         if ($radius != null) {
             $varRadius = $radius * 1000;
         } else {
             $varRadius = 20000;
         };
-
         $arrayIdAps = [];
         $apsNearFinded = $this->theRadius($street, $varRadius);
         $apCoordinates = $this->isLocated($street);
