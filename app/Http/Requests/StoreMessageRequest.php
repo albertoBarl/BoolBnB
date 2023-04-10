@@ -27,6 +27,7 @@ class StoreMessageRequest extends FormRequest
             'email' => ['required'],
             'content' => ['required'],
             'apartment_id' => ['required'],
+            'apartment_title' => ['required']
         ];
     }
 
